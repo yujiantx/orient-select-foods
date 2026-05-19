@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Catalog — Orient Select Foods</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --ivory: #f7f4ee;
+    --gold: #b8922a;
+    --gold-light: #d4aa50;
+    --warm-gray: #e8e3d9;
+    --mid-gray: #8a8478;
+    --white: #ffffff;
+    --deep: #141210;
+    --green: #2a5c3f;
+    --green-light: #e8f0eb;
+    --terracotta: #7a3b2e;
+    --terracotta-light: #f2ebe8;
+    --slate: #2b3a4a;
+    --slate-light: #e8ecf0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(247,244,238,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(184,146,42,0.18);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--mid-gray); transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--white); background: var(--gold);
+    padding: 0.65rem 1.6rem; border: 1px solid var(--gold); transition: all 0.2s;
+  }
+  .nav-cta:hover { background: var(--ink); border-color: var(--ink); }
+
+  /* ─── PAGE HERO ─── */
+  .page-hero {
+    padding: 13rem 4rem 7rem;
+    background: var(--ink);
+    position: relative; overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(184,146,42,0.04) 0, rgba(184,146,42,0.04) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(90deg, rgba(184,146,42,0.04) 0, rgba(184,146,42,0.04) 1px, transparent 1px, transparent 80px);
+  }
+  .page-hero::after {
+    content: '精选';
+    position: absolute; right: 3rem; bottom: -2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16rem; font-weight: 300; line-height: 1;
+    color: rgba(184,146,42,0.06); pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end;
+  }
+  .eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+  .page-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.08; color: var(--white);
+  }
+  .page-title em { font-style: italic; color: var(--gold); }
+  .hero-right-text {
+    font-size: 0.95rem; line-height: 1.85; font-weight: 300;
+    color: rgba(247,244,238,0.55); align-self: end;
+    border-left: 1px solid rgba(184,146,42,0.25); padding-left: 2.5rem;
+  }
+  .hero-right-text strong { color: rgba(247,244,238,0.85); font-weight: 400; }
+
+  /* SKU Nav Pills */
+  .sku-nav {
+    display: flex; gap: 0;
+    background: rgba(247,244,238,0.04);
+    border: 1px solid rgba(184,146,42,0.15);
+    width: fit-content; margin-top: 4rem;
+  }
+  .sku-pill {
+    padding: 0.7rem 1.6rem;
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; color: rgba(247,244,238,0.4);
+    border-right: 1px solid rgba(184,146,42,0.15);
+    transition: all 0.2s;
+  }
+  .sku-pill:last-child { border-right: none; }
+  .sku-pill:hover { color: var(--gold); background: rgba(184,146,42,0.06); }
+
+  /* ─── PRODUCT CARDS ─── */
+  .products-wrapper { padding: 0 0 6rem; }
+
+  /* ── Product 1: Veggie Dumplings ── */
+  .product-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 80vh;
+    position: relative;
+  }
+
+  /* Visual Panel */
+  .product-visual {
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    padding: 4rem;
+  }
+
+  .p1 .product-visual { background: var(--green); }
+  .p2 .product-visual { background: var(--terracotta); }
+  .p3 .product-visual { background: var(--slate); }
+
+  .visual-pattern {
+    position: absolute; inset: 0; opacity: 0.07;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.8) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .visual-sku-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11rem; font-weight: 300; line-height: 1;
+    color: rgba(255,255,255,0.07);
+    position: absolute; bottom: -1.5rem; right: 1rem;
+    pointer-events: none;
+  }
+  .visual-top { position: relative; }
+  .visual-sku-tag {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); margin-bottom: 0.5rem; display: block;
+  }
+  .visual-product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem; font-weight: 400; color: var(--white);
+    line-height: 1.15; margin-bottom: 0.35rem;
+  }
+  .visual-chinese {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 300; font-style: italic;
+    color: rgba(255,255,255,0.35); display: block;
+  }
+  .visual-center {
+    position: relative;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex: 1; padding: 3rem 0;
+  }
+  .product-emoji-display {
+    font-size: 7rem; line-height: 1;
+    filter: drop-shadow(0 12px 32px rgba(0,0,0,0.3));
+    display: block; text-align: center;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .visual-bottom { position: relative; display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .visual-badge {
+    display: inline-block;
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 0.35rem 0.85rem;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(4px);
+  }
+
+  /* Content Panel */
+  .product-content {
+    background: var(--white);
+    padding: 4rem 4.5rem;
+    display: flex; flex-direction: column;
+    border-bottom: 1px solid var(--warm-gray);
+    border-left: 1px solid var(--warm-gray);
+  }
+
+  .content-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--warm-gray); }
+
+  .content-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mid-gray); margin-bottom: 0.75rem; display: block;
+  }
+  .content-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; font-weight: 600; color: var(--ink); line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .content-subtitle {
+    font-size: 0.82rem; color: var(--mid-gray); letter-spacing: 0.04em;
+  }
+
+  /* Flavor Tags */
+  .flavor-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+  .flavor-tag {
+    font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--warm-gray);
+    color: var(--mid-gray);
+  }
+  .flavor-tag.accent { border-color: var(--gold); color: var(--gold); }
+
+  /* Description */
+  .desc-section { margin-bottom: 2.25rem; }
+  .desc-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.75rem; display: block;
+  }
+  .desc-text {
+    font-size: 0.9rem; line-height: 1.85; color: #555;
+  }
+  .desc-text strong { color: var(--ink); font-weight: 500; }
+
+  /* Divider */
+  .content-divider {
+    height: 1px; background: var(--warm-gray); margin: 2rem 0;
+  }
+
+  /* Retail Benefits */
+  .benefits-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;
+    margin-bottom: 2.25rem;
+  }
+  .benefit-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    background: var(--ivory);
+    border: 1px solid var(--warm-gray);
+  }
+  .benefit-icon {
+    font-size: 0.85rem; flex-shrink: 0; margin-top: 0.05rem;
+  }
+  .benefit-text {
+    font-size: 0.78rem; line-height: 1.55; color: #555;
+  }
+  .benefit-text strong { color: var(--ink); font-weight: 500; display: block; margin-bottom: 0.1rem; }
+
+  /* Packaging Specs Table */
+  .specs-section { margin-top: auto; }
+  .specs-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 0.85rem;
+  }
+  .specs-title {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+  }
+  .specs-note {
+    font-size: 0.62rem; color: var(--mid-gray); letter-spacing: 0.06em;
+  }
+  .specs-table {
+    width: 100%; border-collapse: collapse;
+    border: 1px solid var(--warm-gray);
+  }
+  .specs-table th {
+    font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--mid-gray); font-weight: 500;
+    background: var(--ivory); padding: 0.65rem 1rem;
+    text-align: left; border-bottom: 1px solid var(--warm-gray);
+    border-right: 1px solid var(--warm-gray);
+  }
+  .specs-table th:last-child { border-right: none; }
+  .specs-table td {
+    font-size: 0.8rem; color: var(--ink);
+    padding: 0.75rem 1rem;
+    border-right: 1px solid var(--warm-gray);
+    border-bottom: 1px solid var(--warm-gray);
+    vertical-align: top;
+  }
+  .specs-table tr:last-child td { border-bottom: none; }
+  .specs-table td:last-child { border-right: none; }
+  .specs-table td.tbd {
+    color: var(--mid-gray); font-style: italic;
+    font-size: 0.75rem;
+  }
+
+  /* CTA strip within product */
+  .product-cta-strip {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    background: var(--ink);
+    margin-top: 2rem;
+  }
+  .pcta-text {
+    font-size: 0.78rem; color: rgba(247,244,238,0.55); letter-spacing: 0.04em;
+  }
+  .pcta-link {
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; color: var(--gold);
+    border-bottom: 1px solid rgba(184,146,42,0.35);
+    padding-bottom: 1px; transition: border-color 0.2s;
+  }
+  .pcta-link:hover { border-color: var(--gold); }
+
+  /* ─── PRODUCT 2 & 3 alternate layout ─── */
+  .product-block.reverse { direction: rtl; }
+  .product-block.reverse > * { direction: ltr; }
+  .product-block.reverse .product-content { border-left: none; border-right: 1px solid var(--warm-gray); }
+
+  /* ─── CATALOG FOOTER STRIP ─── */
+  .catalog-strip {
+    background: var(--warm-gray);
+    padding: 4rem;
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 0; border-top: 1px solid rgba(184,146,42,0.15);
+  }
+  .catalog-strip-item {
+    padding: 0 3rem;
+    border-right: 1px solid rgba(184,146,42,0.15);
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .catalog-strip-item:first-child { padding-left: 0; }
+  .catalog-strip-item:last-child { border-right: none; }
+  .csi-label {
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
+  }
+  .csi-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 500; color: var(--ink);
+  }
+  .csi-desc { font-size: 0.8rem; color: var(--mid-gray); line-height: 1.6; }
+
+  /* ─── CTA SECTION ─── */
+  .page-cta {
+    background: var(--ink); padding: 7rem 4rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .page-cta::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(184,146,42,0.04) 0, rgba(184,146,42,0.04) 1px, transparent 1px, transparent 80px),
+      repeating-linear-gradient(90deg, rgba(184,146,42,0.04) 0, rgba(184,146,42,0.04) 1px, transparent 1px, transparent 80px);
+  }
+  .cta-inner { position: relative; }
+  .cta-eyebrow {
+    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  }
+  .cta-eyebrow::before, .cta-eyebrow::after {
+    content: ''; display: block; width: 28px; height: 1px; background: var(--gold);
+  }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300; line-height: 1.15; color: var(--white); margin-bottom: 1.25rem;
+  }
+  .cta-sub { font-size: 0.9rem; color: rgba(247,244,238,0.5); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.8; }
+  .cta-actions { display: flex; justify-content: center; gap: 1.25rem; }
+  .btn-gold {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--ink); background: var(--gold);
+    padding: 1rem 2.4rem; border: 1px solid var(--gold); transition: all 0.25s; display: inline-block;
+  }
+  .btn-gold:hover { background: var(--gold-light); border-color: var(--gold-light); }
+  .btn-ghost {
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.14em;
+    text-transform: uppercase; text-decoration: none;
+    color: rgba(247,244,238,0.55);
+    border: 1px solid rgba(247,244,238,0.15);
+    padding: 1rem 2.4rem; transition: all 0.25s; display: inline-block;
+  }
+  .btn-ghost:hover { color: var(--gold); border-color: rgba(184,146,42,0.4); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep); padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(184,146,42,0.12);
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-meta { font-size: 0.72rem; color: rgba(247,244,238,0.3); letter-spacing: 0.06em; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    text-decoration: none; color: rgba(247,244,238,0.4); transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  .nav-logo { text-decoration: none; display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="orient-select-foods-homepage.html" class="nav-logo">Orient <span>Select</span> Foods</a>
+  <ul class="nav-links">
+    <li><a href="orient-select-foods-products.html" class="active">Products</a></li>
+    <li><a href="orient-select-foods-about.html">Supply Chain &amp; Compliance</a></li>
+    <li><a href="orient-select-foods-partner.html">Partner With Us</a></li>
+  </ul>
+  <a href="orient-select-foods-partner.html#inquiry" class="nav-cta">Request a Quote</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow">B2B Product Catalog</div>
+      <h1 class="page-title">
+        Products Built to Sell.<br>
+        <em>Sourced to Last.</em>
+      </h1>
+      <div class="sku-nav">
+        <a href="#sku1" class="sku-pill">SKU 01 — Veggie Dumplings</a>
+        <a href="#sku2" class="sku-pill">SKU 02 — Chive Pockets</a>
+        <a href="#sku3" class="sku-pill">SKU 03 — Scallion Pancakes</a>
+      </div>
+    </div>
+    <p class="hero-right-text">
+      Three flagship SKUs. Each one selected for <strong>authentic flavor, clean ingredient profiles, and proven consumer demand</strong> across US retail and foodservice. Every product in this catalog is fully FDA-compliant, cold chain-managed, and available on DDP delivery terms — ready to go straight onto your shelf or into your kitchen.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SKU 01: HANDMADE VEGGIE DUMPLINGS              -->
+<!-- ══════════════════════════════════════════════ -->
+<div class="products-wrapper">
+<section class="product-block p1" id="sku1">
+
+  <!-- Visual Panel -->
+  <div class="product-visual">
+    <div class="visual-pattern"></div>
+    <span class="visual-sku-number">01</span>
+
+    <div class="visual-top">
+      <span class="visual-sku-tag">SKU 01 · Frozen Dumplings</span>
+      <div class="visual-product-name">Handmade<br>Veggie Dumplings</div>
+      <span class="visual-chinese">素饺子</span>
+    </div>
+
+    <div class="visual-center">
+      <span class="product-emoji-display">🥟</span>
+    </div>
+
+    <div class="visual-bottom">
+      <span class="visual-badge">Plant-Based</span>
+      <span class="visual-badge">Clean Label</span>
+      <span class="visual-badge">No Artificial Additives</span>
+      <span class="visual-badge">Frozen Ready</span>
+    </div>
+  </div>
+
+  <!-- Content Panel -->
+  <div class="product-content">
+    <div class="content-header">
+      <span class="content-eyebrow">SKU 01 · Handmade Series</span>
+      <h2 class="content-title">Handmade Veggie Dumplings</h2>
+      <div class="content-subtitle">Premium Frozen · Plant-Based · Clean Label Certified</div>
+    </div>
+
+    <div class="flavor-tags">
+      <span class="flavor-tag accent">Plant-Based</span>
+      <span class="flavor-tag accent">Vegan-Friendly</span>
+      <span class="flavor-tag">Savory · Umami-Rich</span>
+      <span class="flavor-tag">Thin-Skin Wrap</span>
+      <span class="flavor-tag">Boil / Steam / Pan-Fry</span>
+    </div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Product Description</span>
+      <p class="desc-text">
+        Our Handmade Veggie Dumplings deliver everything today's health-conscious consumer is looking for — <strong>bold flavor, satisfying texture, and a reassuringly short ingredient list.</strong> Each dumpling is filled with a seasoned blend of crisp napa cabbage, earthy shiitake mushrooms, silken tofu, and aromatic ginger, all hand-folded into a delicately thin wheat wrapper with the kind of pleated craftsmanship that signals quality the moment a shopper picks up the bag.
+      </p>
+    </div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Culinary Profile</span>
+      <p class="desc-text">
+        Steamed, they are tender and light. Pan-fried, the base caramelizes to a golden crisp that gives way to a juicy, herb-forward center. <strong>Boiled in two minutes, pan-seared in five</strong> — versatility is built into every piece. Serve with black vinegar and chili oil for an authentic dim sum experience, or position as a clean-eating protein-side with modern plating. Either way, they disappear fast.
+      </p>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Retail Benefits</span>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <span class="benefit-icon">📈</span>
+          <div class="benefit-text">
+            <strong>Taps the Plant-Based Growth Segment</strong>
+            Plant-based frozen meals is one of the fastest-growing categories in US retail — position this as a premium, authentic alternative to mass-market options.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🏷️</span>
+          <div class="benefit-text">
+            <strong>Clean Label Drives Impulse Conversion</strong>
+            Recognizable, pronounceable ingredients build instant trust at shelf — and justify premium price-point positioning.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🌍</span>
+          <div class="benefit-text">
+            <strong>Broad Cross-Cultural Appeal</strong>
+            Resonates with Asian-American shoppers seeking authenticity and health-forward mainstream consumers exploring global flavors.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">⚡</span>
+          <div class="benefit-text">
+            <strong>Quick-Prep = Higher Repeat Purchase</strong>
+            Ready in under 8 minutes from frozen. Convenience drives repeat purchasing in frozen snack and meal categories.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">💰</span>
+          <div class="benefit-text">
+            <strong>Strong Margin Potential</strong>
+            Premium positioning, authentic branding, and clean-label status support above-average retail margin in the frozen Asian foods set.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">📦</span>
+          <div class="benefit-text">
+            <strong>Retail & Foodservice Formats</strong>
+            Available in consumer retail bags and bulk foodservice cases — one SKU family serves multiple revenue channels.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specs-section">
+      <div class="specs-header">
+        <span class="specs-title">— Packaging Specifications</span>
+        <span class="specs-note">*Exact specs confirmed at order stage</span>
+      </div>
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th>Retail Pack</th>
+            <th>Foodservice / Bulk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Net Weight</td>
+            <td class="tbd">TBC — e.g. 400g / 600g</td>
+            <td class="tbd">TBC — e.g. 5 lb / 10 lb case</td>
+          </tr>
+          <tr>
+            <td>Piece Count</td>
+            <td class="tbd">TBC — e.g. 20 / 30 pcs per bag</td>
+            <td class="tbd">TBC — bulk count per case</td>
+          </tr>
+          <tr>
+            <td>Shelf Life (Frozen)</td>
+            <td>12 months from production date</td>
+            <td>12 months from production date</td>
+          </tr>
+          <tr>
+            <td>Storage Temp.</td>
+            <td>≤ −18°C / 0°F</td>
+            <td>≤ −18°C / 0°F</td>
+          </tr>
+          <tr>
+            <td>Country of Origin</td>
+            <td>Canada</td>
+            <td>Canada</td>
+          </tr>
+          <tr>
+            <td>Certifications</td>
+            <td>FDA · HACCP · FSVP</td>
+            <td>FDA · HACCP · FSVP</td>
+          </tr>
+          <tr>
+            <td>Label Languages</td>
+            <td>English + French (bilingual)</td>
+            <td>English</td>
+          </tr>
+          <tr>
+            <td>Private Label</td>
+            <td>Available on qualifying volumes</td>
+            <td>Available on qualifying volumes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="product-cta-strip">
+      <span class="pcta-text">Ready to add this SKU to your set?</span>
+      <a href="mailto:sales@orientselectfoods.com" class="pcta-link">Request Pricing & Samples →</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SKU 02: TRADITIONAL CHIVE POCKETS              -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="product-block p2 reverse" id="sku2">
+
+  <!-- Visual Panel -->
+  <div class="product-visual">
+    <div class="visual-pattern"></div>
+    <span class="visual-sku-number">02</span>
+
+    <div class="visual-top">
+      <span class="visual-sku-tag">SKU 02 · Savory Pastry</span>
+      <div class="visual-product-name">Traditional<br>Chive Pockets</div>
+      <span class="visual-chinese">韭菜盒子</span>
+    </div>
+
+    <div class="visual-center">
+      <span class="product-emoji-display">🫔</span>
+    </div>
+
+    <div class="visual-bottom">
+      <span class="visual-badge">Street-Food Authentic</span>
+      <span class="visual-badge">Crispy Pastry</span>
+      <span class="visual-badge">High Demand Item</span>
+      <span class="visual-badge">Pan-Fry Ready</span>
+    </div>
+  </div>
+
+  <!-- Content Panel -->
+  <div class="product-content">
+    <div class="content-header">
+      <span class="content-eyebrow">SKU 02 · Artisan Pastry Series</span>
+      <h2 class="content-title">Traditional Chive Pockets <span style="font-weight:300;color:var(--mid-gray);">韭菜盒子</span></h2>
+      <div class="content-subtitle">Premium Frozen · Street-Food Heritage · Pan-Fry Ready</div>
+    </div>
+
+    <div class="flavor-tags">
+      <span class="flavor-tag accent">Iconic Street Food</span>
+      <span class="flavor-tag accent">High Demand</span>
+      <span class="flavor-tag">Crispy · Flaky · Savory</span>
+      <span class="flavor-tag">Chinese Chive · Egg · Glass Noodle</span>
+      <span class="flavor-tag">Pan-Fry / Air-Fry</span>
+    </div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Product Description</span>
+      <p class="desc-text">
+        Few dishes carry the cultural weight of the 韭菜盒子 — the Traditional Chive Pocket. A staple of Northern Chinese home kitchens and street food stalls for generations, this <strong>half-moon pastry encases a fragrant filling of fresh garlic chives, scrambled egg, and silky glass noodles</strong>, seasoned with sesame oil and a whisper of white pepper. The result is a flavor combination that is deeply savory, subtly aromatic, and immediately recognizable to millions of Asian-American consumers.
+      </p>
+    </div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Culinary Profile</span>
+      <p class="desc-text">
+        The pastry itself is the hallmark of this product. <strong>Laminated and lightly flaky</strong>, it crisps beautifully in a pan with minimal oil, developing a golden, lacquered exterior that gives way to a tender, steam-soft interior. Pan-fry for four minutes per side from frozen and the result is a product that looks — and tastes — homemade. Works equally well in an air fryer for a lower-oil, modern prep method that will appeal to health-conscious shoppers.
+      </p>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Retail Benefits</span>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <span class="benefit-icon">🏘️</span>
+          <div class="benefit-text">
+            <strong>Unmatched Brand Loyalty in Asian Communities</strong>
+            韭菜盒子 is a household staple with deep nostalgia value — this product drives basket loyalty and repeat trips in stores serving Asian-American demographics.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">📣</span>
+          <div class="benefit-text">
+            <strong>Viral Snack Format</strong>
+            Visually striking and highly snackable — this product photographs beautifully and performs exceptionally well in in-store demo and social-media-driven retail discovery.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🚫</span>
+          <div class="benefit-text">
+            <strong>Limited Direct Competition</strong>
+            Authentic, restaurant-quality chive pockets remain under-represented in mainstream frozen aisles — this is a differentiation opportunity for forward-looking buyers.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🍽️</span>
+          <div class="benefit-text">
+            <strong>Dual Retail & Foodservice Placement</strong>
+            Equally at home as a dim sum menu item in Asian restaurants as it is in a premium frozen snack set — maximizes distribution value per SKU.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🌿</span>
+          <div class="benefit-text">
+            <strong>Clean, Recognizable Filling</strong>
+            No mystery ingredients. Garlic chive, egg, glass noodle, sesame oil — ingredients consumers can read and trust, which reduces return rates and builds category confidence.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🔥</span>
+          <div class="benefit-text">
+            <strong>Multiple Prep Methods</strong>
+            Pan-fry, air-fry, or oven-bake — versatile cooking compatibility expands the consumer use occasion and reduces friction at point of purchase.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specs-section">
+      <div class="specs-header">
+        <span class="specs-title">— Packaging Specifications</span>
+        <span class="specs-note">*Exact specs confirmed at order stage</span>
+      </div>
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th>Retail Pack</th>
+            <th>Foodservice / Bulk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Net Weight</td>
+            <td class="tbd">TBC — e.g. 350g / 500g</td>
+            <td class="tbd">TBC — e.g. 5 lb / 10 lb case</td>
+          </tr>
+          <tr>
+            <td>Piece Count</td>
+            <td class="tbd">TBC — e.g. 6 / 10 pcs per pack</td>
+            <td class="tbd">TBC — bulk count per case</td>
+          </tr>
+          <tr>
+            <td>Shelf Life (Frozen)</td>
+            <td>12 months from production date</td>
+            <td>12 months from production date</td>
+          </tr>
+          <tr>
+            <td>Storage Temp.</td>
+            <td>≤ −18°C / 0°F</td>
+            <td>≤ −18°C / 0°F</td>
+          </tr>
+          <tr>
+            <td>Country of Origin</td>
+            <td>Canada</td>
+            <td>Canada</td>
+          </tr>
+          <tr>
+            <td>Certifications</td>
+            <td>FDA · HACCP · FSVP</td>
+            <td>FDA · HACCP · FSVP</td>
+          </tr>
+          <tr>
+            <td>Label Languages</td>
+            <td>English + French (bilingual)</td>
+            <td>English</td>
+          </tr>
+          <tr>
+            <td>Private Label</td>
+            <td>Available on qualifying volumes</td>
+            <td>Available on qualifying volumes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="product-cta-strip">
+      <span class="pcta-text">Ready to add this SKU to your set?</span>
+      <a href="mailto:sales@orientselectfoods.com" class="pcta-link">Request Pricing & Samples →</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════════ -->
+<!-- SKU 03: CRISPY SCALLION PANCAKES               -->
+<!-- ══════════════════════════════════════════════ -->
+<section class="product-block p3" id="sku3">
+
+  <!-- Visual Panel -->
+  <div class="product-visual">
+    <div class="visual-pattern"></div>
+    <span class="visual-sku-number">03</span>
+
+    <div class="visual-top">
+      <span class="visual-sku-tag">SKU 03 · Savory Pancake</span>
+      <div class="visual-product-name">Crispy Scallion<br>Pancakes</div>
+      <span class="visual-chinese">葱油饼</span>
+    </div>
+
+    <div class="visual-center">
+      <span class="product-emoji-display">🥞</span>
+    </div>
+
+    <div class="visual-bottom">
+      <span class="visual-badge">Versatile Format</span>
+      <span class="visual-badge">Appetizer · Side · Snack</span>
+      <span class="visual-badge">Individually Wrapped</span>
+      <span class="visual-badge">Top Seller</span>
+    </div>
+  </div>
+
+  <!-- Content Panel -->
+  <div class="product-content">
+    <div class="content-header">
+      <span class="content-eyebrow">SKU 03 · Signature Pancake Series</span>
+      <h2 class="content-title">Crispy Scallion Pancakes <span style="font-weight:300;color:var(--mid-gray);">葱油饼</span></h2>
+      <div class="content-subtitle">Premium Frozen · Multi-Occasion Format · Individually Wrapped</div>
+    </div>
+
+    <div class="flavor-tags">
+      <span class="flavor-tag accent">Top-Selling SKU</span>
+      <span class="flavor-tag accent">Multi-Occasion</span>
+      <span class="flavor-tag">Crispy · Layered · Aromatic</span>
+      <span class="flavor-tag">Scallion · Sesame · Sea Salt</span>
+      <span class="flavor-tag">Pan / Oven / Air-Fry</span>
+    </div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Product Description</span>
+      <p class="desc-text">
+        The 葱油饼 is arguably the most accessible and universally loved format in the Asian frozen foods category — and our Crispy Scallion Pancakes are the best version of it available in the US market. <strong>Made with laminated, hand-rolled dough layered with fragrant scallion, toasted sesame, and a touch of sea salt</strong>, each pancake bakes into an extraordinary contrast of textures: shatteringly crisp on the outside, chewy and steamy within, with a savory aroma that will draw shoppers down the aisle.
+      </p>
+    </div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Culinary Profile</span>
+      <p class="desc-text">
+        From frozen to plated in under seven minutes. <strong>Pan-fry in a lightly oiled skillet for a golden, crackly crust.</strong> Bake in a conventional oven for a more uniform crisp. Air-fry for a lighter result with exceptional texture. Serve as a standalone snack with dumpling dipping sauce, as a side to soups and noodles, or as an appetizer platter anchor. The scallion pancake crosses every meal occasion — brunch, lunch, dinner, and late-night snack — making it one of the highest-utility items a buyer can add to their frozen set.
+      </p>
+    </div>
+
+    <div class="content-divider"></div>
+
+    <div class="desc-section">
+      <span class="desc-label">— Retail Benefits</span>
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <span class="benefit-icon">🏆</span>
+          <div class="benefit-text">
+            <strong>#1 Format in Asian Frozen Snacks</strong>
+            Scallion pancakes are the best-performing Asian frozen snack format in North American retail by velocity — this category is proven, and growing.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🔄</span>
+          <div class="benefit-text">
+            <strong>Exceptional Repeat Purchase Rate</strong>
+            Simple, fast, consistently delicious — the format that converts first-time tryers into loyal, habitual buyers at a rate that outperforms most frozen snack segments.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🧾</span>
+          <div class="benefit-text">
+            <strong>Individual Wrapping Reduces Waste</strong>
+            Each pancake is individually wrapped, reducing food waste and giving consumers portion control — a meaningful selling point in retail.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🌐</span>
+          <div class="benefit-text">
+            <strong>Widest Consumer Appeal in the Catalog</strong>
+            No strong allergens, minimal and familiar ingredients, neutral enough for non-Asian shoppers. The easiest entry point for stores new to the Asian frozen category.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🗓️</span>
+          <div class="benefit-text">
+            <strong>Year-Round, All-Occasion Velocity</strong>
+            No seasonal dependency. Moves consistently 52 weeks a year across grocery, club, and specialty retail formats.
+          </div>
+        </div>
+        <div class="benefit-item">
+          <span class="benefit-icon">🤝</span>
+          <div class="benefit-text">
+            <strong>Anchor SKU for Category Build-Out</strong>
+            Use as the entry point to build a broader Asian frozen section — its velocity and margin create the shelf space justification for expanding into dumplings and dim sum.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="specs-section">
+      <div class="specs-header">
+        <span class="specs-title">— Packaging Specifications</span>
+        <span class="specs-note">*Exact specs confirmed at order stage</span>
+      </div>
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th>Retail Pack</th>
+            <th>Foodservice / Bulk</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Net Weight</td>
+            <td class="tbd">TBC — e.g. 400g / 720g</td>
+            <td class="tbd">TBC — e.g. 5 lb / 10 lb case</td>
+          </tr>
+          <tr>
+            <td>Piece Count</td>
+            <td class="tbd">TBC — e.g. 4 / 6 pcs (individually wrapped)</td>
+            <td class="tbd">TBC — bulk count per case</td>
+          </tr>
+          <tr>
+            <td>Shelf Life (Frozen)</td>
+            <td>12 months from production date</td>
+            <td>12 months from production date</td>
+          </tr>
+          <tr>
+            <td>Storage Temp.</td>
+            <td>≤ −18°C / 0°F</td>
+            <td>≤ −18°C / 0°F</td>
+          </tr>
+          <tr>
+            <td>Country of Origin</td>
+            <td>Canada</td>
+            <td>Canada</td>
+          </tr>
+          <tr>
+            <td>Certifications</td>
+            <td>FDA · HACCP · FSVP</td>
+            <td>FDA · HACCP · FSVP</td>
+          </tr>
+          <tr>
+            <td>Label Languages</td>
+            <td>English + French (bilingual)</td>
+            <td>English</td>
+          </tr>
+          <tr>
+            <td>Private Label</td>
+            <td>Available on qualifying volumes</td>
+            <td>Available on qualifying volumes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="product-cta-strip">
+      <span class="pcta-text">Ready to add this SKU to your set?</span>
+      <a href="mailto:sales@orientselectfoods.com" class="pcta-link">Request Pricing & Samples →</a>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<!-- CATALOG FOOTER STRIP -->
+<div class="catalog-strip">
+  <div class="catalog-strip-item">
+    <span class="csi-label">Private Label</span>
+    <div class="csi-title">Your Brand, Our Product</div>
+    <p class="csi-desc">All three SKUs are available for private label on qualifying order volumes. Custom pack sizes and label design available.</p>
+  </div>
+  <div class="catalog-strip-item">
+    <span class="csi-label">Sampling Program</span>
+    <div class="csi-title">Try Before You Commit</div>
+    <p class="csi-desc">Request a curated sample kit of all three SKUs — delivered cold, compliant, and with full product documentation for your QA team.</p>
+  </div>
+  <div class="catalog-strip-item">
+    <span class="csi-label">Pricing & MOQ</span>
+    <div class="csi-title">Flexible for Your Volume</div>
+    <p class="csi-desc">Tiered pricing available for regional distributors, national chains, and club-format buyers. Contact us for a custom quote.</p>
+  </div>
+</div>
+
+<!-- PAGE CTA -->
+<section class="page-cta" id="contact">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Get Started</div>
+    <h2 class="cta-title">Request a Full Catalog,<br>Samples, or a Buyer Call.</h2>
+    <p class="cta-sub">Our team in Dallas, TX is ready to walk you through pricing, minimums, compliance documentation, and delivery timelines.</p>
+    <div class="cta-actions">
+      <a href="mailto:sales@orientselectfoods.com" class="btn-gold">Request a Sample Kit</a>
+      <a href="mailto:sales@orientselectfoods.com" class="btn-ghost">Download Full Catalog</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="orient-select-foods-homepage.html" class="footer-logo" style="text-decoration:none">Orient <span>Select</span> Foods</a>
+  <span class="footer-meta">Dallas, TX &nbsp;|&nbsp; FDA Registered FSVP Importer &nbsp;|&nbsp; © 2025 Orient Select Foods LLC</span>
+    <div class="footer-links">
+    <a href="orient-select-foods-products.html">Products</a>
+    <a href="orient-select-foods-about.html">Compliance</a>
+    <a href="orient-select-foods-partner.html#inquiry">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
