@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wholesale Inquiry — Orient Select Foods | US Importer & Distributor</title>
+<title>Orient Select Foods — Premium Asian Frozen Foods | US Importer & Distributor</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink:           #0f0e0c;
-    --ivory:         #f7f4ee;
-    --gold:          #b8922a;
-    --gold-light:    #d4aa50;
-    --warm-gray:     #e8e3d9;
-    --mid-gray:      #8a8478;
-    --white:         #ffffff;
-    --deep:          #141210;
-    --panel:         #1a1815;
+    --ink: #0f0e0c;
+    --ivory: #f7f4ee;
+    --gold: #b8922a;
+    --gold-light: #d4aa50;
+    --warm-gray: #e8e3d9;
+    --mid-gray: #8a8478;
+    --red-accent: #8b2e2e;
+    --white: #ffffff;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   html { scroll-behavior: smooth; }
+
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--ivory);
@@ -28,472 +29,661 @@
     overflow-x: hidden;
   }
 
-  /* ── NAV ─────────────────────────────────────── */
+  /* ─── NAV ─────────────────────────────────────────── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 1.25rem 4rem;
-    background: rgba(247,244,238,0.94);
+    background: rgba(247,244,238,0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(184,146,42,0.18);
   }
+
   .nav-logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.35rem; font-weight: 600;
-    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+    text-transform: uppercase;
   }
+
   .nav-logo span { color: var(--gold); }
-  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+
   .nav-links a {
-    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
-    text-transform: uppercase; text-decoration: none;
-    color: var(--mid-gray); transition: color 0.2s;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--mid-gray);
+    transition: color 0.2s;
   }
-  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+  .nav-links a:hover { color: var(--gold); }
+
   .nav-cta {
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
-    text-transform: uppercase; text-decoration: none;
-    color: var(--white); background: var(--gold);
-    padding: 0.65rem 1.6rem; border: 1px solid var(--gold); transition: all 0.2s;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--white);
+    background: var(--gold);
+    padding: 0.65rem 1.6rem;
+    border: 1px solid var(--gold);
+    transition: background 0.2s, color 0.2s;
   }
+
   .nav-cta:hover { background: var(--ink); border-color: var(--ink); }
 
-  /* ── PAGE HERO ───────────────────────────────── */
-  .page-hero {
-    min-height: 60vh;
-    background: var(--ink);
-    padding: 13rem 4rem 7rem;
-    position: relative; overflow: hidden;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: end;
-  }
-  .page-hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      repeating-linear-gradient(0deg,  rgba(184,146,42,0.04) 0, rgba(184,146,42,0.04) 1px, transparent 1px, transparent 80px),
-      repeating-linear-gradient(90deg, rgba(184,146,42,0.04) 0, rgba(184,146,42,0.04) 1px, transparent 1px, transparent 80px);
-  }
-  .page-hero::after {
-    content: '合作';
-    position: absolute; right: 2rem; bottom: -3rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18rem; font-weight: 300; line-height: 1;
-    color: rgba(184,146,42,0.05); pointer-events: none;
-  }
-
-  .hero-left { position: relative; }
-  .eyebrow {
-    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.75rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
-
-  .page-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    font-weight: 300; line-height: 1.08; color: var(--white);
-  }
-  .page-title em { font-style: italic; color: var(--gold); display: block; }
-
-  .hero-right {
+  /* ─── HERO ────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     position: relative;
-    border-left: 1px solid rgba(184,146,42,0.2);
-    padding-left: 3.5rem;
-    align-self: end;
-  }
-  .hero-right p {
-    font-size: 0.97rem; line-height: 1.85; font-weight: 300;
-    color: rgba(247,244,238,0.58); margin-bottom: 2.25rem;
-  }
-  .hero-right p strong { color: rgba(247,244,238,0.88); font-weight: 400; }
-
-  .hero-meta { display: flex; gap: 2.5rem; flex-wrap: wrap; }
-  .meta-chip {
-    display: flex; align-items: center; gap: 0.6rem;
-    font-size: 0.72rem; letter-spacing: 0.1em;
-    color: rgba(247,244,238,0.45); text-transform: uppercase;
-  }
-  .meta-chip::before {
-    content: ''; display: block; width: 6px; height: 6px;
-    border: 1px solid var(--gold); border-radius: 50%; flex-shrink: 0;
+    overflow: hidden;
   }
 
-  /* ── WHO WE WORK WITH ────────────────────────── */
-  .who-section {
-    padding: 6rem 4rem;
-    background: var(--white);
-    border-bottom: 1px solid var(--warm-gray);
+  .hero-left {
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 5rem 6rem 4rem;
+    position: relative;
   }
-  .section-label {
-    font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.25rem;
-    display: flex; align-items: center; gap: 0.75rem;
-  }
-  .section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
 
-  .who-grid {
-    display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start;
-    margin-top: 3rem;
-  }
-  .who-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 400; line-height: 1.2; color: var(--ink);
-  }
-  .who-heading em { font-style: italic; color: var(--gold); }
-
-  .partner-types {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
-    background: var(--warm-gray); border: 1px solid var(--warm-gray);
-  }
-  .partner-type {
-    background: var(--white);
-    padding: 2rem 2.25rem;
-    transition: background 0.25s;
-    position: relative; overflow: hidden;
-  }
-  .partner-type::before {
+  .hero-left::after {
     content: '';
-    position: absolute; top: 0; left: 0; right: 0; height: 2px;
-    background: var(--gold); transform: scaleX(0); transform-origin: left;
-    transition: transform 0.35s ease;
-  }
-  .partner-type:hover::before { transform: scaleX(1); }
-  .partner-type:hover { background: var(--ivory); }
-  .pt-icon { font-size: 1.5rem; margin-bottom: 0.85rem; display: block; }
-  .pt-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem; font-weight: 600; color: var(--ink); margin-bottom: 0.5rem;
-  }
-  .pt-desc { font-size: 0.82rem; line-height: 1.7; color: var(--mid-gray); }
-
-  /* ── DDP TERMS BAND ──────────────────────────── */
-  .ddp-band {
+    position: absolute; right: -1px; top: 0; bottom: 0; width: 2px;
     background: var(--gold);
-    padding: 4.5rem 4rem;
-    display: grid; grid-template-columns: auto 1fr; gap: 5rem; align-items: center;
-  }
-  .ddp-left { text-align: center; }
-  .ddp-acronym {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 6rem; font-weight: 300; line-height: 1;
-    color: var(--ink); display: block; letter-spacing: -0.02em;
-  }
-  .ddp-expansion {
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(15,14,12,0.55); margin-top: 0.25rem; display: block;
   }
 
-  .ddp-right {}
-  .ddp-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.6rem, 2.8vw, 2.2rem);
-    font-weight: 400; line-height: 1.25; color: var(--ink); margin-bottom: 1rem;
-  }
-  .ddp-body {
-    font-size: 0.9rem; line-height: 1.85; color: rgba(15,14,12,0.7);
-    max-width: 640px; margin-bottom: 2rem;
-  }
-  .ddp-body strong { color: var(--ink); font-weight: 500; }
-  .ddp-checklist {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem 2rem;
-  }
-  .ddp-check {
-    display: flex; align-items: flex-start; gap: 0.7rem;
-    font-size: 0.8rem; color: rgba(15,14,12,0.75); line-height: 1.5;
-  }
-  .ddp-check::before {
-    content: '✓'; color: var(--ink); font-weight: 700;
-    font-size: 0.7rem; flex-shrink: 0; margin-top: 0.1rem;
-  }
-
-  /* ── PROCESS STRIP ───────────────────────────── */
-  .process-section {
-    padding: 6rem 4rem;
-    background: var(--ivory);
-    border-top: 1px solid var(--warm-gray);
-    border-bottom: 1px solid var(--warm-gray);
-  }
-  .process-header {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end;
-    margin-bottom: 4rem;
-  }
-  .process-desc {
-    font-size: 0.9rem; line-height: 1.85; color: var(--mid-gray); align-self: end;
-  }
-  .process-steps {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 0; position: relative;
-  }
-  .process-steps::before {
-    content: '';
-    position: absolute; top: 1.75rem; left: 8%; right: 8%; height: 1px;
-    background: linear-gradient(to right, var(--gold), rgba(184,146,42,0.15));
-  }
-  .process-step {
-    display: flex; flex-direction: column; align-items: center;
-    text-align: center; padding: 0 1rem; position: relative;
-  }
-  .step-dot {
-    width: 3.5rem; height: 3.5rem;
-    background: var(--white); border: 1px solid var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1rem; margin-bottom: 1.25rem; position: relative; z-index: 1;
-    transition: background 0.25s, border-color 0.25s;
-  }
-  .step-dot:hover { background: var(--gold); }
-  .step-n {
-    position: absolute; top: -0.5rem; right: -0.5rem;
-    width: 1.2rem; height: 1.2rem;
-    background: var(--ink); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 0.55rem; font-weight: 500; color: var(--gold); letter-spacing: 0;
-  }
-  .step-title { font-size: 0.82rem; font-weight: 500; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.3; }
-  .step-sub { font-size: 0.72rem; color: var(--mid-gray); line-height: 1.55; }
-
-  /* ── MAIN INQUIRY LAYOUT ─────────────────────── */
-  .inquiry-section {
-    display: grid; grid-template-columns: 5fr 7fr;
-    min-height: 90vh;
-    border-top: 1px solid var(--warm-gray);
-  }
-
-  /* Left Panel — Context */
-  .inquiry-left {
-    background: var(--deep);
-    padding: 5rem 4rem;
-    display: flex; flex-direction: column; justify-content: space-between;
-    position: relative; overflow: hidden;
-  }
-  .inquiry-left::after {
-    content: '合';
-    position: absolute; bottom: -3rem; right: -1rem;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 16rem; font-weight: 300; line-height: 1;
-    color: rgba(184,146,42,0.05); pointer-events: none;
-  }
-
-  .inq-label {
-    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.25rem;
-    display: flex; align-items: center; gap: 0.7rem;
-  }
-  .inq-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
-
-  .inq-heading {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3vw, 2.8rem);
-    font-weight: 300; line-height: 1.15; color: var(--white); margin-bottom: 1.5rem;
-  }
-  .inq-heading em { font-style: italic; color: var(--gold); }
-
-  .inq-body {
-    font-size: 0.87rem; line-height: 1.85; font-weight: 300;
-    color: rgba(247,244,238,0.52); margin-bottom: 2.5rem;
-  }
-  .inq-body strong { color: rgba(247,244,238,0.82); font-weight: 400; }
-
-  .inq-divider {
-    width: 100%; height: 1px;
-    background: linear-gradient(to right, rgba(184,146,42,0.35), transparent);
-    margin: 2.5rem 0;
-  }
-
-  .inq-what-you-get { margin-bottom: 2.5rem; }
-  .wyg-title {
-    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 1.25rem; display: block;
-  }
-  .wyg-list { display: flex; flex-direction: column; gap: 0.85rem; }
-  .wyg-item {
-    display: flex; align-items: flex-start; gap: 1rem;
-    font-size: 0.82rem; line-height: 1.55; color: rgba(247,244,238,0.5);
-  }
-  .wyg-icon { font-size: 0.9rem; flex-shrink: 0; margin-top: 0.05rem; }
-  .wyg-item strong { color: rgba(247,244,238,0.82); font-weight: 400; display: block; }
-
-  .inq-contact-info {}
-  .contact-info-label {
-    font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(247,244,238,0.3); margin-bottom: 0.85rem; display: block;
-  }
-  .contact-line {
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
     display: flex; align-items: center; gap: 0.75rem;
-    font-size: 0.82rem; color: rgba(247,244,238,0.45); margin-bottom: 0.5rem;
-  }
-  .contact-line a {
-    color: var(--gold); text-decoration: none; transition: opacity 0.2s;
-  }
-  .contact-line a:hover { opacity: 0.75; }
-
-  /* Right Panel — Form */
-  .inquiry-right {
-    background: var(--white);
-    padding: 5rem 4.5rem;
-    border-left: 1px solid var(--warm-gray);
-    display: flex; flex-direction: column;
   }
 
-  .form-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--warm-gray); }
-  .form-eyebrow {
-    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 0.75rem; display: block;
+  .hero-eyebrow::before {
+    content: '';
+    display: block; width: 32px; height: 1px;
+    background: var(--gold);
   }
-  .form-title {
+
+  .hero-headline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem; font-weight: 600; color: var(--ink); line-height: 1.2;
-  }
-  .form-note {
-    font-size: 0.78rem; color: var(--mid-gray); margin-top: 0.5rem; line-height: 1.6;
-  }
-
-  /* Form Layout */
-  .inquiry-form { display: flex; flex-direction: column; gap: 1.5rem; flex: 1; }
-
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-
-  .field-group { display: flex; flex-direction: column; gap: 0.5rem; }
-
-  .field-label {
-    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--ink); font-weight: 500;
-  }
-  .field-required { color: var(--gold); margin-left: 2px; }
-
-  .field-input, .field-select, .field-textarea {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.88rem; color: var(--ink);
-    background: var(--ivory);
-    border: 1px solid var(--warm-gray);
-    padding: 0.85rem 1.1rem;
-    width: 100%;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-  .field-input::placeholder, .field-textarea::placeholder {
-    color: rgba(138,132,120,0.55); font-size: 0.85rem;
-  }
-  .field-input:focus, .field-select:focus, .field-textarea:focus {
-    border-color: var(--gold);
-    background: var(--white);
-  }
-  .field-textarea { resize: vertical; min-height: 100px; line-height: 1.65; }
-  .field-select {
-    cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
-  }
-  .field-select option { color: var(--ink); background: var(--white); }
-
-  .field-hint {
-    font-size: 0.7rem; color: var(--mid-gray); letter-spacing: 0.03em; line-height: 1.5;
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1.5rem;
   }
 
-  /* Checkbox Group */
-  .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; }
-  .checkbox-item {
-    display: flex; align-items: center; gap: 0.65rem;
-    font-size: 0.8rem; color: #555; cursor: pointer; user-select: none;
+  .hero-headline em {
+    font-style: normal;
+    color: var(--gold);
+    display: block;
   }
-  .checkbox-item input[type="checkbox"] {
-    width: 1rem; height: 1rem;
-    border: 1px solid var(--warm-gray);
-    background: var(--ivory);
-    appearance: none; -webkit-appearance: none;
-    cursor: pointer; flex-shrink: 0; position: relative;
-    transition: border-color 0.2s, background 0.2s;
+
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(247,244,238,0.65);
+    max-width: 440px;
+    margin-bottom: 3rem;
   }
-  .checkbox-item input[type="checkbox"]:checked {
-    background: var(--gold); border-color: var(--gold);
+
+  .hero-cta-group {
+    display: flex; align-items: center; gap: 1.5rem;
   }
-  .checkbox-item input[type="checkbox"]:checked::after {
-    content: '✓';
-    position: absolute; top: 50%; left: 50%;
+
+  .btn-primary {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--gold);
+    padding: 1rem 2.4rem;
+    border: 1px solid var(--gold);
+    transition: all 0.25s;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(247,244,238,0.6);
+    border-bottom: 1px solid rgba(184,146,42,0.3);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .btn-ghost:hover { color: var(--gold); border-color: var(--gold); }
+
+  .hero-badges {
+    display: flex; gap: 1.5rem; margin-top: 4rem;
+  }
+
+  .badge {
+    display: flex; flex-direction: column; gap: 0.2rem;
+  }
+
+  .badge-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .badge-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .badge-divider {
+    width: 1px; background: rgba(255,255,255,0.1);
+    margin: 0 0.25rem;
+  }
+
+  /* Hero Right — visual panel */
+  .hero-right {
+    background: var(--warm-gray);
+    position: relative;
+    overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-pattern {
+    position: absolute; inset: 0;
+    opacity: 0.06;
+    background-image:
+      repeating-linear-gradient(0deg, var(--ink) 0, var(--ink) 1px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(90deg, var(--ink) 0, var(--ink) 1px, transparent 1px, transparent 60px);
+  }
+
+  .hero-visual-card {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 3rem;
+  }
+
+  .hero-emblem {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 9rem;
+    line-height: 1;
+    color: var(--gold);
+    opacity: 0.15;
+    display: block;
+    position: absolute;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 0.6rem; color: var(--ink); font-weight: 700;
+    pointer-events: none;
+    user-select: none;
+    font-weight: 300;
   }
 
-  /* Form Divider */
-  .form-divider { height: 1px; background: var(--warm-gray); }
-
-  /* Submit */
-  .form-footer {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-top: 0.5rem; gap: 1.5rem; flex-wrap: wrap;
+  .product-stack {
+    display: flex; flex-direction: column; gap: 1rem; position: relative;
   }
-  .form-disclaimer {
-    font-size: 0.72rem; color: var(--mid-gray); line-height: 1.6;
-    max-width: 320px;
-  }
-  .form-disclaimer a { color: var(--gold); text-decoration: none; }
 
-  .btn-submit {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em;
-    text-transform: uppercase; cursor: pointer;
-    color: var(--ink); background: var(--gold);
-    padding: 1rem 2.5rem; border: 1px solid var(--gold);
-    transition: all 0.25s; white-space: nowrap;
+  .product-chip {
+    background: var(--white);
+    border: 1px solid rgba(184,146,42,0.2);
+    padding: 1.1rem 2rem;
+    display: flex; align-items: center; gap: 1rem;
+    box-shadow: 0 4px 24px rgba(15,14,12,0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
   }
-  .btn-submit:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
-  /* ── TRUST FOOTER BAR ────────────────────────── */
-  .trust-bar {
+  .product-chip:hover {
+    transform: translateX(6px);
+    box-shadow: 0 8px 32px rgba(15,14,12,0.1);
+  }
+
+  .chip-icon { font-size: 1.5rem; }
+
+  .chip-info { text-align: left; }
+
+  .chip-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    display: block;
+  }
+
+  .chip-sub {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ─── WHY CHOOSE US ───────────────────────────────── */
+  .section { padding: 7rem 4rem; }
+
+  .section-header {
+    display: flex; align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid var(--warm-gray);
+    padding-bottom: 2.5rem;
+  }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-label::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ink);
+  }
+
+  .section-desc {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--mid-gray);
+    max-width: 360px;
+    align-self: flex-end;
+  }
+
+  /* Pillars */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--warm-gray);
+  }
+
+  .pillar {
+    padding: 3.5rem 2.8rem;
+    border-right: 1px solid var(--warm-gray);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .pillar:last-child { border-right: none; }
+
+  .pillar::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .pillar:hover::before { transform: scaleX(1); }
+  .pillar:hover { background: var(--white); }
+
+  .pillar-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem;
+    font-weight: 300;
+    color: rgba(184,146,42,0.12);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .pillar-icon {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  .pillar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.55rem;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .pillar-text {
+    font-size: 0.87rem;
+    line-height: 1.8;
+    color: var(--mid-gray);
+  }
+
+  .pillar-highlight {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(184,146,42,0.3);
+    padding: 0.3rem 0.8rem;
+    margin-top: 1.5rem;
+  }
+
+  /* ─── PRODUCTS ────────────────────────────────────── */
+  .products-section {
+    padding: 7rem 4rem;
+    background: var(--ink);
+  }
+
+  .products-section .section-label { color: var(--gold); }
+  .products-section .section-label::before { background: var(--gold); }
+  .products-section .section-title { color: var(--white); }
+  .products-section .section-desc { color: rgba(247,244,238,0.5); }
+  .products-section .section-header { border-bottom-color: rgba(255,255,255,0.08); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    background: rgba(255,255,255,0.06);
+  }
+
+  .product-card {
+    background: var(--ink);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+    transition: background 0.3s;
+  }
+
+  .product-card:hover { background: #1a1815; }
+
+  .product-card-bg {
+    position: absolute;
+    right: -1rem; bottom: -1rem;
+    font-size: 7rem;
+    opacity: 0.05;
+    line-height: 1;
+    pointer-events: none;
+    transition: transform 0.4s, opacity 0.4s;
+  }
+
+  .product-card:hover .product-card-bg {
+    transform: scale(1.15) rotate(-5deg);
+    opacity: 0.08;
+  }
+
+  .product-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+
+  .product-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .product-desc {
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: rgba(247,244,238,0.5);
+    margin-bottom: 2rem;
+  }
+
+  .product-specs {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .spec {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.75rem;
+    color: rgba(247,244,238,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .spec::before {
+    content: '';
+    display: block; width: 4px; height: 4px;
+    background: var(--gold); border-radius: 50%; flex-shrink: 0;
+  }
+
+  .product-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,146,42,0.3);
+    padding-bottom: 2px;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+
+  .product-link:hover { border-color: var(--gold); }
+
+  /* ─── COMPLIANCE STRIP ────────────────────────────── */
+  .compliance-strip {
     background: var(--warm-gray);
     padding: 3.5rem 4rem;
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 0;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem;
     border-top: 1px solid rgba(184,146,42,0.15);
     border-bottom: 1px solid rgba(184,146,42,0.15);
   }
-  .trust-item {
-    display: flex; align-items: flex-start; gap: 1rem;
-    padding: 0 2rem;
-    border-right: 1px solid rgba(184,146,42,0.15);
-  }
-  .trust-item:first-child { padding-left: 0; }
-  .trust-item:last-child { border-right: none; }
-  .trust-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
-  .trust-text {}
-  .trust-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem;
-  }
-  .trust-sub { font-size: 0.75rem; color: var(--mid-gray); line-height: 1.55; }
 
-  /* ── FOOTER ──────────────────────────────────── */
-  footer {
-    background: var(--deep); padding: 3rem 4rem;
-    display: flex; align-items: center; justify-content: space-between;
-    border-top: 1px solid rgba(184,146,42,0.12);
+  .compliance-item {
+    display: flex; align-items: center; gap: 1rem;
+    flex: 1;
   }
+
+  .compliance-icon {
+    width: 44px; height: 44px;
+    border: 1px solid rgba(184,146,42,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+
+  .compliance-text {}
+
+  .compliance-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    display: block;
+  }
+
+  .compliance-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--mid-gray);
+  }
+
+  .compliance-divider {
+    width: 1px; height: 48px;
+    background: rgba(184,146,42,0.2);
+    flex-shrink: 0;
+  }
+
+  /* ─── CTA BANNER ──────────────────────────────────── */
+  .cta-banner {
+    padding: 8rem 4rem;
+    text-align: center;
+    background: var(--ivory);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: 'OSF';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28rem;
+    font-weight: 300;
+    color: rgba(184,146,42,0.04);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: -0.02em;
+  }
+
+  .cta-inner { position: relative; }
+
+  .cta-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+  }
+
+  .cta-label::before, .cta-label::after {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--gold);
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+
+  .cta-sub {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: var(--mid-gray);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+  }
+
+  .cta-actions { display: flex; align-items: center; justify-content: center; gap: 1.25rem; }
+
+  .btn-dark {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--white);
+    background: var(--ink);
+    padding: 1rem 2.4rem;
+    border: 1px solid var(--ink);
+    transition: all 0.25s;
+  }
+
+  .btn-dark:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  .btn-outline {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink);
+    border: 1px solid rgba(15,14,12,0.25);
+    padding: 1rem 2.4rem;
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: var(--ink);
+    padding: 3rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(184,146,42,0.15);
+  }
+
   .footer-logo {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem; font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
   }
+
   .footer-logo span { color: var(--gold); }
-  .footer-meta { font-size: 0.72rem; color: rgba(247,244,238,0.3); letter-spacing: 0.06em; }
-  .footer-links { display: flex; gap: 2rem; }
-  .footer-links a {
-    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none; color: rgba(247,244,238,0.4); transition: color 0.2s;
+
+  .footer-meta {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: rgba(247,244,238,0.3);
   }
+
+  .footer-links { display: flex; gap: 2rem; }
+
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(247,244,238,0.4);
+    transition: color 0.2s;
+  }
+
   .footer-links a:hover { color: var(--gold); }
 
-  /* ── ANIMATIONS ──────────────────────────────── */
+  /* ─── ANIMATIONS ──────────────────────────────────── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(22px); }
+    from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  .hero-left  { animation: fadeUp 0.65s ease 0.1s both; }
-  .hero-right { animation: fadeUp 0.65s ease 0.28s both; }
+
+  .hero-eyebrow { animation: fadeUp 0.6s ease 0.1s both; }
+  .hero-headline { animation: fadeUp 0.6s ease 0.25s both; }
+  .hero-sub { animation: fadeUp 0.6s ease 0.4s both; }
+  .hero-cta-group { animation: fadeUp 0.6s ease 0.55s both; }
+  .hero-badges { animation: fadeUp 0.6s ease 0.7s both; }
+  .product-chip:nth-child(1) { animation: fadeUp 0.6s ease 0.3s both; }
+  .product-chip:nth-child(2) { animation: fadeUp 0.6s ease 0.5s both; }
+  .product-chip:nth-child(3) { animation: fadeUp 0.6s ease 0.7s both; }
 
   .nav-logo { text-decoration: none; display: inline-block; }
 
@@ -861,403 +1051,236 @@
 <nav>
   <a href="orient-select-foods-homepage.html" class="nav-logo">Orient <span>Select</span> Foods</a>
   <ul class="nav-links">
-    <li><a href="orient-select-foods-products.html" data-i18n="nav.products">Products</a></li>
+    <li><a href="orient-select-foods-products.html" data-i18n="nav.products" data-i18n="nav.products">Products</a></li>
     <li><a href="orient-select-foods-about.html" data-i18n="nav.compliance">Supply Chain &amp; Compliance</a></li>
-    <li><a href="orient-select-foods-partner.html" class="active">Partner With Us</a></li>
+    <li><a href="orient-select-foods-partner.html" data-i18n="nav.partner" data-i18n="cta.eyebrow">Partner With Us</a></li>
   </ul>
   <a href="orient-select-foods-partner.html#inquiry" class="nav-cta">Request a Quote</a>
 </nav>
 
-<!-- PAGE HERO -->
-<section class="page-hero">
+<!-- HERO -->
+<section class="hero">
   <div class="hero-left">
-    <div class="eyebrow">Wholesale & Distribution</div>
-    <h1 class="page-title">
-      Wholesale Inquiry &amp;<br>
-      <em>Pricing Request</em>
+    <span class="hero-eyebrow">US Importer & Wholesale Distributor</span>
+    <h1 class="hero-headline">
+      Authentic Asian<br>Frozen Foods,
+      <em>Delivered to Your Door.</em>
     </h1>
+    <p class="hero-sub">
+      <span data-i18n="home.sub">Premium-quality dim sum, dumplings, and savory pancakes — sourced from trusted manufacturers, cleared through US Customs, and delivered DDP-ready to your distribution center or retail floor.</span>
+    </p>
+    <div class="hero-cta-group">
+      <a href="#contact" class="btn-primary">Request a Quote</a>
+      <a href="#products" class="btn-ghost">View Product Catalog →</a>
+    </div>
+    <div class="hero-badges">
+      <div class="badge">
+        <span class="badge-label" data-i18n="home.badge1.lbl">Compliant With</span>
+        <span class="badge-value" data-i18n="home.badge1.val">FDA / FSVP</span>
+      </div>
+      <div class="badge-divider"></div>
+      <div class="badge">
+        <span class="badge-label" data-i18n="home.badge2.lbl">Delivery Terms</span>
+        <span class="badge-value" data-i18n="home.badge2.val">DDP Ready</span>
+      </div>
+      <div class="badge-divider"></div>
+      <div class="badge">
+        <span class="badge-label" data-i18n="home.badge3.lbl">Coverage</span>
+        <span class="badge-value" data-i18n="home.badge3.val">Nationwide</span>
+      </div>
+    </div>
   </div>
-  <div class="hero-right">
-    <p>
-      Orient Select Foods supplies <strong>US supermarket chains, regional grocers, and wholesale distributors</strong> with premium frozen Asian snacks — imported, customs-cleared, and delivered DDP to your US warehouse.
-    </p>
-    <p>
-      Submit the form below. We respond within <strong>one business day</strong> with wholesale pricing, a product catalog, and compliance documentation.
-    </p>
-    <div class="hero-meta">
-      <span class="meta-chip">DDP to Your DC</span>
-      <span class="meta-chip">FDA / FSVP Registered</span>
-      <span class="meta-chip">Private Label Available</span>
-      <span class="meta-chip">All 50 States</span>
+
+  <div class="hero-right" style="background: linear-gradient(rgba(232,227,217,0.85),rgba(232,227,217,0.85)), url('images/img_01.jpg') center/cover no-repeat;">
+    <div class="hero-pattern"></div>
+    <span class="hero-emblem">东</span>
+    <div class="hero-visual-card">
+      <div class="product-stack">
+        <div class="product-chip">
+          <img src="images/img_02.jpg" style="width:44px;height:44px;object-fit:cover;border-radius:4px;flex-shrink:0" alt="Dumplings"/>
+          <div class="chip-info">
+            <span class="chip-name">Premium Dumplings</span>
+            <span class="chip-sub">Pork, Shrimp & Veggie Varieties</span>
+          </div>
+        </div>
+        <div class="product-chip">
+          <img src="images/img_03.jpg" style="width:44px;height:44px;object-fit:cover;border-radius:4px;flex-shrink:0" alt="Pancakes"/>
+          <div class="chip-info">
+            <span class="chip-name">Savory Pancakes</span>
+            <span class="chip-sub">Scallion & Chive Pocket Lines</span>
+          </div>
+        </div>
+        <div class="product-chip">
+          <img src="images/img_04.jpg" style="width:44px;height:44px;object-fit:cover;border-radius:4px;flex-shrink:0" alt="Dim Sum"/>
+          <div class="chip-info">
+            <span class="chip-name">Dim Sum Collection</span>
+            <span class="chip-sub">Retail & Foodservice SKUs</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHO WE WORK WITH -->
-<section class="who-section">
-  <div class="section-label">Who We Supply</div>
-  <div class="who-grid">
-    <h2 class="who-heading">We Work With<br>These <em>Channels.</em></h2>
-    <div class="partner-types">
-      <div class="partner-type">
-        <span class="pt-icon">🏪</span>
-        <div class="pt-title">Supermarket Chains</div>
-        <p class="pt-desc">Regional and national grocery groups. We support new vendor onboarding with full compliance documentation — FDA registration, FSVP records, HACCP certs, COO — ready for your QA team on day one.</p>
-      </div>
-      <div class="partner-type">
-        <span class="pt-icon">🏭</span>
-        <div class="pt-title">Wholesale Distributors</div>
-        <p class="pt-desc">Distributors serving foodservice, ethnic grocery, or club retail. Bulk case pricing available. Delivery scheduled to your DC. Cold chain documented from origin to receipt.</p>
-      </div>
-      <div class="partner-type">
-        <span class="pt-icon">🌏</span>
-        <div class="pt-title">Asian Specialty Retailers</div>
-        <p class="pt-desc">Specialty and ethnic grocers with high product authenticity standards. Our sourcing is traceable, our recipes are traditional, and our documentation covers every SKU.</p>
-      </div>
-      <div class="partner-type">
-        <span class="pt-icon">🍽️</span>
-        <div class="pt-title">Foodservice Operators</div>
-        <p class="pt-desc">Restaurant groups and institutional operators. Bulk formats and custom pack sizes available. Consistent spec, consistent supply — quoted per volume and delivery cadence.</p>
-      </div>
+<!-- COMPLIANCE STRIP -->
+<div class="compliance-strip">
+  <div class="compliance-item">
+    <div class="compliance-icon">🛡️</div>
+    <div class="compliance-text">
+      <span class="compliance-title">FDA & FSVP Compliant</span>
+      <span class="compliance-sub" data-i18n="strip.fda.sub">Full Foreign Supplier Verification on every SKU</span>
     </div>
-
-<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2rem;overflow:hidden">
-  <img src="images/img_02.jpg" style="width:100%;aspect-ratio:1;object-fit:cover;display:block" alt="Chive Pocket"/>
-  <img src="images/img_03.jpg"   style="width:100%;aspect-ratio:1;object-fit:cover;display:block" alt="Scallion Pancake"/>
-  <img src="images/img_06.jpg"   style="width:100%;aspect-ratio:1;object-fit:cover;display:block" alt="Chive Pocket Bulk"/>
+  </div>
+  <div class="compliance-divider"></div>
+  <div class="compliance-item">
+    <div class="compliance-icon">🚢</div>
+    <div class="compliance-text">
+      <span class="compliance-title" data-i18n="strip.logistics.title">Seamless Cross-Border Logistics</span>
+      <span class="compliance-sub"><span data-i18n="strip.logistics.sub">Canada-to-US supply chain — customs handled end-to-end</span></span>
+    </div>
+  </div>
+  <div class="compliance-divider"></div>
+  <div class="compliance-item">
+    <div class="compliance-icon">📦</div>
+    <div class="compliance-text">
+      <span class="compliance-title" data-i18n="strip.ddp.title">DDP Delivery Nationwide</span>
+      <span class="compliance-sub"><span data-i18n="strip.ddp.sub">Delivered Duty Paid — zero hidden costs for buyers</span></span>
+    </div>
+  </div>
+  <div class="compliance-divider"></div>
+  <div class="compliance-item">
+    <div class="compliance-icon">❄️</div>
+    <div class="compliance-text">
+      <span class="compliance-title" data-i18n="strip.cold.title">Cold Chain Integrity</span>
+      <span class="compliance-sub"><span data-i18n="strip.cold.sub">Frozen-fresh from origin to final mile</span></span>
+    </div>
+  </div>
 </div>
 
-  </div>
-</section>
-
-<!-- DDP TERMS BAND -->
-<div class="ddp-band">
-  <div class="ddp-left">
-    <span class="ddp-acronym">DDP</span>
-    <span class="ddp-expansion">Delivered Duty Paid</span>
-  </div>
-  <div class="ddp-right">
-    <h2 class="ddp-heading" data-i18n="partner.ddp.h2">What DDP Means for Your Procurement Team</h2>
-    <p class="ddp-body">
-      All orders ship on <strong>Delivered Duty Paid terms</strong>. Orient Select Foods covers customs clearance, import duties, and cold chain transport to your designated US warehouse. <strong>You receive one invoice. No brokerage fees. No duty line items. No cold chain gaps.</strong>
-    </p>
-    <div class="ddp-checklist">
-      <div class="ddp-check">Import duties &amp; tariffs paid by us</div>
-      <div class="ddp-check">Licensed customs broker on every shipment</div>
-      <div class="ddp-check">Cold chain ≤ −18°C, origin to your dock</div>
-      <div class="ddp-check">FDA Prior Notice filed before each import</div>
-      <div class="ddp-check">Delivery to your US DC or warehouse</div>
-      <div class="ddp-check">Single clean invoice — no hidden charges</div>
-    </div>
-  </div>
-</div>
-
-<!-- HOW IT WORKS -->
-<section class="process-section">
-  <div class="process-header">
+<!-- WHY CHOOSE US -->
+<section class="section" id="why">
+  <div class="section-header">
     <div>
-      <div class="section-label">Onboarding Process</div>
-      <h2 class="who-heading">4 Steps from<br>Inquiry to First Order.</h2>
+      <div class="section-label" data-i18n="why.eyebrow">Why Orient Select Foods</div>
+      <h2 class="section-title">Built for the B2B<br>Buyer Who Demands More</h2>
     </div>
-    <p class="process-desc">
-      Most buyers complete vendor qualification and receive their first DDP shipment within 4–6 weeks of initial inquiry. We provide all documentation your QA and procurement teams require at step 3 — no back-and-forth.
-    </p>
+    <p class="section-desc">We exist at the intersection of authentic Asian food culture and rigorous US distribution standards — so you never have to choose between quality and compliance.</p>
   </div>
-  <div class="process-steps">
-    <div class="process-step">
-      <div class="step-dot">
-        📋
-        <span class="step-n">1</span>
-      </div>
-      <div class="step-title">Submit Inquiry</div>
-      <div class="step-sub">Fill in the form — channel, volume, and DC address</div>
-    </div>
-    <div class="process-step">
-      <div class="step-dot">
-        📞
-        <span class="step-n">2</span>
-      </div>
-      <div class="step-title">We Call Within 1 Day</div>
-      <div class="step-sub">Brief call to confirm requirements and answer questions</div>
-    </div>
-    <div class="process-step">
-      <div class="step-dot">
-        📦
-        <span class="step-n">3</span>
-      </div>
-      <div class="step-title">Pricing + Sample Kit</div>
-      <div class="step-sub">DDP pricing sheet, full compliance docs, and cold samples shipped to you</div>
-    </div>
-    <div class="process-step">
-      <div class="step-dot">
-        🚛
-        <span class="step-n">4</span>
-      </div>
-      <div class="step-title">First Shipment</div>
-      <div class="step-sub">Vendor onboarding complete. First DDP order confirmed and dispatched</div>
-    </div>
-  </div>
-</section>
 
-<!-- INQUIRY FORM SECTION -->
-<section class="inquiry-section" id="inquiry">
-
-  <!-- Left: Context Panel -->
-  <div class="inquiry-left">
-    <div>
-      <div class="inq-label">Wholesale Inquiry</div>
-      <h2 class="inq-heading">Request Pricing<br>&amp; <em>Documentation.</em></h2>
-      <p class="inq-body">
-        Fill in the form. We respond within <strong>one business day</strong> with pricing, catalog, and a full compliance package ready for your vendor qualification process.
+  <div class="pillars">
+    <div class="pillar">
+      <span class="pillar-number">01</span>
+      <span class="pillar-icon">🌿</span>
+      <h3 class="pillar-title">Authentic Taste.<br>Clean Ingredients.</h3>
+      <p class="pillar-text">
+        Every product in our portfolio is crafted using traditional recipes and high-quality, minimally processed ingredients — no artificial fillers, no shortcuts. Your shoppers get the real thing. Your brand gets the halo.
       </p>
-
-      <div class="inq-divider"></div>
-
-      <div class="inq-what-you-get">
-        <span class="wyg-title">— Included in Every Response</span>
-        <div class="wyg-list">
-          <div class="wyg-item">
-            <span class="wyg-icon">📄</span>
-            <div><strong>Product Catalog</strong> SKU specs, ingredient lists, allergen declarations, and shelf-life data for all three lines</div>
-          </div>
-          <div class="wyg-item">
-            <span class="wyg-icon">💲</span>
-            <div><strong>DDP Wholesale Pricing</strong> Tiered pricing by volume and delivery location. No brokerage or duty add-ons</div>
-          </div>
-          <div class="wyg-item">
-            <span class="wyg-icon">🛡️</span>
-            <div><strong>Compliance Package</strong> FDA registration, FSVP records, HACCP certs, COO docs — ready for your QA team</div>
-          </div>
-          <div class="wyg-item">
-            <span class="wyg-icon">🧊</span>
-            <div><strong>Cold Sample Kit</strong> Physical samples shipped DDP to your DC or office at no charge</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="inq-divider"></div>
+      <span class="pillar-highlight" data-i18n="why.p1.badge">Clean Label Verified</span>
     </div>
 
-    <img src="images/img_05.jpg" alt="Orient Select Foods" style="width:100%;display:block;margin-bottom:1.5rem;opacity:0.75;border:1px solid rgba(184,146,42,0.15)"/>
-    <div class="inq-contact-info">
-      <span class="contact-info-label">— Direct contact</span>
-      <div class="contact-line">📧 <a href="mailto:sales@orientselectfoods.com">sales@orientselectfoods.com</a></div>
-      <div class="contact-line">📍 Dallas, TX — nationwide US delivery</div>
-      <div class="contact-line">🕐 1 business day response, guaranteed</div>
+    <div class="pillar">
+      <span class="pillar-number">02</span>
+      <span class="pillar-icon">⚙️</span>
+      <h3 class="pillar-title">Turnkey Supply Chain.<br>Zero Customs Headaches.</h3>
+      <p class="pillar-text">
+        We manage the full journey — from our Canadian-based manufacturing partners through US Customs clearance, FDA/FSVP registration, and final-mile cold chain delivery. You place the order; we handle the rest.
+      </p>
+      <span class="pillar-highlight">DDP • FDA • FSVP</span>
+    </div>
+
+    <div class="pillar">
+      <span class="pillar-number">03</span>
+      <span class="pillar-icon">📈</span>
+      <h3 class="pillar-title">B2B Scalability.<br>Built for Volume.</h3>
+      <p class="pillar-text">
+        Whether you're onboarding a single SKU or building out an entire Asian frozen foods aisle, Orient Select Foods has the inventory depth, logistics infrastructure, and private-label flexibility to grow with your business.
+      </p>
+      <span class="pillar-highlight" data-i18n="why.p3.badge">Private Label Available</span>
     </div>
   </div>
-
-  <!-- Right: Form Panel -->
-  <div class="inquiry-right">
-    <div class="form-header">
-      <span class="form-eyebrow">Wholesale & Distribution Inquiry</span>
-      <h3 class="form-title">Catalog & Pricing Request</h3>
-      <p class="form-note">Fields marked <span style="color:var(--gold)">*</span> are required. We respond within one business day.</p>
-    </div>
-
-    <form class="inquiry-form" onsubmit="return false;">
-
-      <!-- Row 1: Name & Title -->
-      <div class="form-row">
-        <div class="field-group">
-          <label class="field-label">First Name <span class="field-required">*</span></label>
-          <input class="field-input" type="text" placeholder="e.g. Sarah" required />
-        </div>
-        <div class="field-group">
-          <label class="field-label">Last Name <span class="field-required">*</span></label>
-          <input class="field-input" type="text" placeholder="e.g. Chen" required />
-        </div>
-      </div>
-
-      <!-- Row 2: Company & Role -->
-      <div class="form-row">
-        <div class="field-group">
-          <label class="field-label">Company / Organization <span class="field-required">*</span></label>
-          <input class="field-input" type="text" placeholder="e.g. Pacific Retail Group" required />
-        </div>
-        <div class="field-group">
-          <label class="field-label">Your Role / Title <span class="field-required">*</span></label>
-          <input class="field-input" type="text" placeholder="e.g. Category Buyer, VP Procurement" required />
-        </div>
-      </div>
-
-      <!-- Row 3: Email & Phone -->
-      <div class="form-row">
-        <div class="field-group">
-          <label class="field-label">Business Email <span class="field-required">*</span></label>
-          <input class="field-input" type="email" placeholder="you@company.com" required />
-        </div>
-        <div class="field-group">
-          <label class="field-label">Phone Number</label>
-          <input class="field-input" type="tel" placeholder="+1 (000) 000-0000" />
-        </div>
-      </div>
-
-      <div class="form-divider"></div>
-
-      <!-- Partner Type -->
-      <div class="field-group">
-        <label class="field-label">Business Type <span class="field-required">*</span></label>
-        <select class="field-select" required>
-          <option value="" disabled selected>Select your channel…</option>
-          <option>Supermarket Chain (Regional)</option>
-          <option>Supermarket Chain (National)</option>
-          <option>Wholesale / Food Distributor</option>
-          <option>Asian Specialty Retailer</option>
-          <option>Club / Warehouse Retail</option>
-          <option>Foodservice Operator / Caterer</option>
-          <option>Other — please specify in notes</option>
-        </select>
-      </div>
-
-      <!-- SKUs of Interest -->
-      <div class="field-group">
-        <label class="field-label">Products of Interest <span class="field-required">*</span></label>
-        <div class="checkbox-group">
-          <label class="checkbox-item">
-            <input type="checkbox" />
-            🥟 Handmade Veggie Dumplings
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" />
-            🫔 Traditional Chive Pockets 韭菜盒子
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" />
-            🥞 Crispy Scallion Pancakes
-          </label>
-          <label class="checkbox-item">
-            <input type="checkbox" />
-            Full Catalog — All SKUs
-          </label>
-        </div>
-      </div>
-
-      <!-- Estimated Monthly Volume -->
-      <div class="field-group">
-        <label class="field-label">Estimated Monthly Volume Requirement <span class="field-required">*</span></label>
-        <select class="field-select" required>
-          <option value="" disabled selected>Select estimated volume range…</option>
-          <option>Under 500 cases/month — exploring options</option>
-          <option>500–1,000 cases/month</option>
-          <option>1,000–5,000 cases/month</option>
-          <option>5,000–10,000 cases/month</option>
-          <option>10,000+ cases/month — national scale</option>
-          <option>Not sure yet — please advise</option>
-        </select>
-        <span class="field-hint">This helps us tailor DDP pricing and delivery scheduling to your requirements. All volumes welcome.</span>
-      </div>
-
-      <!-- Delivery Location -->
-      <div class="form-row">
-        <div class="field-group">
-          <label class="field-label">Primary Delivery State <span class="field-required">*</span></label>
-          <select class="field-select" required>
-            <option value="" disabled selected>Select state…</option>
-            <option>Alabama</option><option>Alaska</option><option>Arizona</option>
-            <option>Arkansas</option><option>California</option><option>Colorado</option>
-            <option>Connecticut</option><option>Delaware</option><option>Florida</option>
-            <option>Georgia</option><option>Hawaii</option><option>Idaho</option>
-            <option>Illinois</option><option>Indiana</option><option>Iowa</option>
-            <option>Kansas</option><option>Kentucky</option><option>Louisiana</option>
-            <option>Maine</option><option>Maryland</option><option>Massachusetts</option>
-            <option>Michigan</option><option>Minnesota</option><option>Mississippi</option>
-            <option>Missouri</option><option>Montana</option><option>Nebraska</option>
-            <option>Nevada</option><option>New Hampshire</option><option>New Jersey</option>
-            <option>New Mexico</option><option>New York</option><option>North Carolina</option>
-            <option>North Dakota</option><option>Ohio</option><option>Oklahoma</option>
-            <option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option>
-            <option>South Carolina</option><option>South Dakota</option><option>Tennessee</option>
-            <option>Texas</option><option>Utah</option><option>Vermont</option>
-            <option>Virginia</option><option>Washington</option><option>West Virginia</option>
-            <option>Wisconsin</option><option>Wyoming</option><option>Multiple States</option>
-          </select>
-        </div>
-        <div class="field-group">
-          <label class="field-label">Number of Locations / DCs</label>
-          <input class="field-input" type="text" placeholder="e.g. 1 DC, 12 stores" />
-        </div>
-      </div>
-
-      <!-- Delivery Address -->
-      <div class="field-group">
-        <label class="field-label">Primary Warehouse / DC Address <span class="field-required">*</span></label>
-        <input class="field-input" type="text" placeholder="Street address, City, State, ZIP" required />
-        <span class="field-hint">DDP delivery is available to select US warehouses and distribution centers. We will confirm delivery eligibility and lead times upon review.</span>
-      </div>
-
-      <div class="form-divider"></div>
-
-      <!-- Additional Notes -->
-      <div class="field-group">
-        <label class="field-label">Additional Notes or Requirements</label>
-        <textarea class="field-textarea" placeholder="Volume commitments, private label interest, planogram requirements, preferred pack sizes, timing, or anything else relevant to your order…"></textarea>
-      </div>
-
-      <!-- How did you hear -->
-      <div class="field-group">
-        <label class="field-label">How Did You Hear About Us?</label>
-        <select class="field-select">
-          <option value="" disabled selected>Select one…</option>
-          <option>Trade show / Industry event</option>
-          <option>Referral from another buyer or distributor</option>
-          <option>Online search</option>
-          <option>LinkedIn / Social media</option>
-          <option>Industry publication or trade press</option>
-          <option>Direct outreach from our team</option>
-          <option>Other</option>
-        </select>
-      </div>
-
-      <!-- Submit -->
-      <div class="form-footer">
-        <p class="form-disclaimer">
-          By submitting this form you agree to be contacted by Orient Select Foods regarding your wholesale inquiry. We do not share your information with third parties. View our <a href="#">Privacy Policy</a>.
-        </p>
-        <button type="submit" class="btn-submit">Submit Wholesale Inquiry →</button>
-      </div>
-
-    </form>
-  </div>
-
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-item">
-    <span class="trust-icon">⚡</span>
-    <div class="trust-text">
-      <div class="trust-title">1-Day Response</div>
-      <div class="trust-sub">All inquiries answered by our commercial team within one business day — no auto-responders.</div>
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="section-header">
+    <div>
+      <div class="section-label" data-i18n="feat.eyebrow">Featured Categories</div>
+      <h2 class="section-title">The Product Lines<br>Your Buyers Are Looking For</h2>
+    </div>
+    <p class="section-desc">Curated for high turn, strong margins, and broad consumer appeal — from grab-and-go retail to institutional foodservice.</p>
+  </div>
+
+  <div class="products-grid">
+    <div class="product-card">
+      <span class="product-card-bg">🍱</span>
+      <span class="product-tag" data-i18n="feat.dimsum.tag">Category 01 — Dim Sum</span>
+      <h3 class="product-name" data-i18n="feat.dimsum.name">Restaurant-Grade Dim Sum</h3>
+      <p class="product-desc">
+        Har gow, siu mai, and chive dumplings that bring the yum cha experience straight to the retail freezer aisle — or straight to your commercial kitchen pass.
+      </p>
+      <div class="product-specs">
+        <span class="spec">Multiple SKUs — retail & foodservice packs</span>
+        <span class="spec">Consistent portion weight for cost control</span>
+        <span class="spec">High margin, fast-turn frozen category</span>
+      </div>
+      <a href="#" class="product-link">View Dim Sum Line →</a>
+    </div>
+
+    <div class="product-card">
+      <span class="product-card-bg">🫔</span>
+      <span class="product-tag" data-i18n="feat.pancake.tag">Category 02 — Savory Pancakes</span>
+      <h3 class="product-name">Scallion & Chive<br>Pancakes</h3>
+      <p class="product-desc">
+        Flaky, layered, and boldly flavored — our scallion pancakes and chive pockets are the top-selling Asian frozen snack format in North American retail today.
+      </p>
+      <div class="product-specs">
+        <span class="spec">Individually wrapped for convenience retail</span>
+        <span class="spec">Oven, pan & air-fryer ready</span>
+        <span class="spec">On-trend with modern snacking occasions</span>
+      </div>
+      <a href="#" class="product-link">View Pancake Line →</a>
+    </div>
+
+    <div class="product-card">
+      <span class="product-card-bg">🥟</span>
+      <span class="product-tag" data-i18n="feat.dump.tag">Category 03 — Dumplings</span>
+      <h3 class="product-name" data-i18n="feat.dump.name">Premium Frozen Dumplings</h3>
+      <p class="product-desc">
+        From classic veggie to savory pork and cabbage, our dumpling lineup covers every consumer segment — with the portion consistency and shelf life retailers depend on.
+      </p>
+      <div class="product-specs">
+        <span class="spec">Clean, recognizable ingredient lists</span>
+        <span class="spec">Bulk and retail-ready formats available</span>
+        <span class="spec">Private label & custom pack-size options</span>
+      </div>
+      <a href="#" class="product-link">View Dumpling Line →</a>
     </div>
   </div>
-  <div class="trust-item">
-    <span class="trust-icon">🛡️</span>
-    <div class="trust-text">
-      <div class="trust-title">Compliance Docs Ready</div>
-      <div class="trust-sub">FDA registration, FSVP, HACCP, and COO documentation sent with every pricing proposal.</div>
-    </div>
-  </div>
-  <div class="trust-item">
-    <span class="trust-icon">❄️</span>
-    <div class="trust-text">
-      <div class="trust-title">Free Cold Sample Delivery</div>
-      <div class="trust-sub">Samples shipped DDP to your location — cold, compliant, no cost — before any order commitment.</div>
-    </div>
-  </div>
-  <div class="trust-item">
-    <span class="trust-icon">📦</span>
-    <div class="trust-text">
-      <div class="trust-title">No Volume Minimums to Start</div>
-      <div class="trust-sub">Category testing orders accepted. Volume tiers and pricing scale up from there.</div>
-    </div>
-  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner" id="contact">
+  <div class="cta-inner">
+<div style="margin-bottom:3rem;overflow:hidden;border:1px solid rgba(184,146,42,0.15);">
+  <img src="images/img_05.jpg" alt="Orient Select Foods — B2B Supply Chain" style="width:100%;display:block;opacity:0.9"/>
 </div>
+
+    <div class="cta-label">Partner With Us</div>
+    <h2 class="cta-title">Ready to Stock the<br>Asian Frozen Foods Your Customers Want?</h2>
+    <p class="cta-sub">
+      Join the growing network of US supermarkets and wholesale distributors who trust Orient Select Foods for reliable supply, full regulatory compliance, and products that genuinely move.
+    </p>
+    <div class="cta-actions">
+      <a href="mailto:sales@orientselectfoods.com" class="btn-dark"><span data-i18n="cta.btn1">Request a Product Catalog</span></a>
+      <a href="mailto:sales@orientselectfoods.com" class="btn-outline"><span data-i18n="cta.btn2">Schedule a Buyer Call</span></a>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
   <a href="orient-select-foods-homepage.html" class="footer-logo" style="text-decoration:none">Orient <span>Select</span> Foods</a>
-  <span class="footer-meta">Dallas, TX &nbsp;|&nbsp; FDA Registered FSVP Importer &nbsp;|&nbsp; © 2025 Orient Select Foods LLC</span>
+  <span class="footer-meta">Dallas, TX &nbsp;|&nbsp; FDA Registered &nbsp;|&nbsp; FSVP Compliant &nbsp;|&nbsp; © 2025 Orient Select Foods LLC</span>
     <div class="footer-links">
     <a href="orient-select-foods-products.html">Products</a>
     <a href="orient-select-foods-about.html">Compliance</a>
