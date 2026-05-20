@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exporter / Supplier Inquiry — Orient Select Foods | 东方甄选食品供应链</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+KR:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:       #0f0e0c;
+  --ivory:     #f7f4ee;
+  --gold:      #b8922a;
+  --gold-light:#d4aa50;
+  --warm-gray: #e8e3d9;
+  --mid-gray:  #8a8478;
+  --white:     #ffffff;
+  --deep:      #141210;
+  --green:     #2a5c3f;
+  --green-bg:  #e8f0eb;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--ivory); color: var(--ink); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 4rem;
+  background: rgba(247,244,238,0.94); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(184,146,42,0.18);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+  text-decoration: none; display: inline-block;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; text-decoration: none;
+  color: var(--mid-gray); transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a.active { color: var(--gold); }
+.nav-cta {
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; text-decoration: none;
+  color: var(--white); background: var(--gold);
+  padding: 0.65rem 1.6rem; border: 1px solid var(--gold); transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--ink); border-color: var(--ink); }
+.nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); transition: all 0.3s; }
+.nav-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+.nav-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-drawer {
+  display: none; position: fixed; inset: 0; background: rgba(247,244,238,0.98);
+  z-index: 150; flex-direction: column; align-items: center; justify-content: center; gap: 2rem;
+}
+.nav-drawer.open { display: flex; }
+.nav-drawer a { font-size: 1.4rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--ink); }
+.nav-drawer .nav-cta-mobile { font-size: 0.85rem !important; background: var(--gold); color: #fff !important; padding: 0.9rem 2.2rem; }
+
+/* ── PAGE HERO ── */
+.page-hero {
+  padding: 10rem 4rem 5rem;
+  background: var(--ink); position: relative; overflow: hidden;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(184,146,42,0.04) 0, rgba(184,146,42,0.04) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg, rgba(184,146,42,0.04) 0, rgba(184,146,42,0.04) 1px, transparent 1px, transparent 80px);
+}
+.page-hero::after {
+  content: '出口';
+  position: absolute; right: 2rem; bottom: -2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16rem; font-weight: 300; line-height: 1;
+  color: rgba(184,146,42,0.05); pointer-events: none;
+}
+.hero-left { position: relative; }
+.eyebrow {
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.75rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.page-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  font-weight: 300; line-height: 1.08; color: var(--white);
+}
+.page-title em { font-style: italic; color: var(--gold); display: block; }
+.hero-right {
+  position: relative;
+  border-left: 1px solid rgba(184,146,42,0.2);
+  padding-left: 3rem; align-self: end;
+}
+.hero-right p {
+  font-size: 0.95rem; line-height: 1.85; font-weight: 300;
+  color: rgba(247,244,238,0.58); margin-bottom: 1.5rem;
+}
+.hero-right p strong { color: rgba(247,244,238,0.88); font-weight: 400; }
+.hero-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.hero-chip {
+  font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(247,244,238,0.45); border: 1px solid rgba(184,146,42,0.2);
+  padding: 0.35rem 0.85rem;
+  display: flex; align-items: center; gap: 0.4rem;
+}
+.hero-chip::before { content: ''; display: block; width: 5px; height: 5px; border: 1px solid var(--gold); border-radius: 50%; }
+
+/* ── WHAT WE SEEK ── */
+.seek-section {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border-bottom: 1px solid var(--warm-gray);
+}
+.seek-left {
+  background: var(--white); padding: 5rem 4rem;
+  border-right: 1px solid var(--warm-gray);
+}
+.seek-right { background: var(--ivory); padding: 5rem 4rem; }
+.section-label {
+  font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.section-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+.section-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 400; line-height: 1.2; color: var(--ink); margin-bottom: 1.5rem;
+}
+.body-text { font-size: 0.88rem; line-height: 1.85; color: var(--mid-gray); margin-bottom: 1.25rem; }
+.body-text strong { color: var(--ink); font-weight: 500; }
+.criteria-list { display: flex; flex-direction: column; gap: 0; margin-top: 1.5rem; }
+.criteria-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1rem 0; border-bottom: 1px solid var(--warm-gray);
+}
+.criteria-item:first-child { border-top: 1px solid var(--warm-gray); }
+.ci-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem; font-weight: 300; color: var(--gold);
+  flex-shrink: 0; width: 1.8rem; padding-top: 0.05rem;
+}
+.ci-title { font-size: 0.83rem; font-weight: 500; color: var(--ink); margin-bottom: 0.2rem; }
+.ci-desc  { font-size: 0.78rem; line-height: 1.65; color: var(--mid-gray); }
+
+/* What we offer cards */
+.offer-cards { display: flex; flex-direction: column; gap: 1rem; }
+.offer-card {
+  background: var(--white); border: 1px solid var(--warm-gray);
+  padding: 1.5rem; position: relative; overflow: hidden;
+  transition: border-color 0.2s;
+}
+.offer-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.offer-card:hover::before { transform: scaleX(1); }
+.offer-card:hover { border-color: rgba(184,146,42,0.3); }
+.oc-icon { font-size: 1.2rem; margin-bottom: 0.6rem; display: block; }
+.oc-title { font-size: 0.85rem; font-weight: 600; color: var(--ink); margin-bottom: 0.35rem; }
+.oc-desc  { font-size: 0.78rem; line-height: 1.65; color: var(--mid-gray); }
+
+/* ── FORM SECTION ── */
+.form-section {
+  display: grid; grid-template-columns: 5fr 7fr;
+  border-top: 1px solid var(--warm-gray);
+}
+.form-left {
+  background: var(--deep); padding: 5rem 4rem;
+  display: flex; flex-direction: column; justify-content: space-between;
+  position: relative; overflow: hidden;
+}
+.form-left::after {
+  content: '供'; position: absolute; bottom: -2rem; right: -0.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16rem; font-weight: 300; line-height: 1;
+  color: rgba(184,146,42,0.05); pointer-events: none;
+}
+.fl-label {
+  font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 0.7rem;
+}
+.fl-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+.fl-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 2.8vw, 2.5rem);
+  font-weight: 300; line-height: 1.15; color: var(--white); margin-bottom: 1.25rem;
+}
+.fl-heading em { font-style: italic; color: var(--gold); }
+.fl-body { font-size: 0.86rem; line-height: 1.85; font-weight: 300; color: rgba(247,244,238,0.52); margin-bottom: 2rem; }
+.fl-body strong { color: rgba(247,244,238,0.82); font-weight: 400; }
+.fl-divider { width: 100%; height: 1px; background: linear-gradient(to right, rgba(184,146,42,0.35), transparent); margin: 2rem 0; }
+.fl-receives { margin-bottom: 2rem; }
+.flr-title { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; display: block; }
+.flr-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.flr-item {
+  display: flex; align-items: flex-start; gap: 0.85rem;
+  font-size: 0.8rem; line-height: 1.55; color: rgba(247,244,238,0.48);
+}
+.flr-icon { font-size: 0.9rem; flex-shrink: 0; }
+.flr-item strong { color: rgba(247,244,238,0.8); font-weight: 400; display: block; }
+.fl-contact { }
+.flc-label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(247,244,238,0.3); margin-bottom: 0.75rem; display: block; }
+.flc-line { display: flex; align-items: center; gap: 0.7rem; font-size: 0.8rem; color: rgba(247,244,238,0.45); margin-bottom: 0.4rem; }
+.flc-line a { color: var(--gold); text-decoration: none; }
+
+/* Form right */
+.form-right {
+  background: var(--white); padding: 5rem 4.5rem;
+  border-left: 1px solid var(--warm-gray);
+}
+.form-header { margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid var(--warm-gray); }
+.form-eyebrow { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: block; }
+.form-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--ink); }
+.form-note { font-size: 0.78rem; color: var(--mid-gray); margin-top: 0.4rem; }
+.form-note span { color: var(--gold); }
+
+/* Fields */
+.exporter-form { display: flex; flex-direction: column; gap: 1.25rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.field { display: flex; flex-direction: column; gap: 0.4rem; }
+.lbl { font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); font-weight: 500; }
+.req { color: var(--gold); }
+input[type=text], input[type=email], input[type=tel], input[type=url],
+input[type=number], select, textarea {
+  font-family: 'DM Sans', sans-serif; font-size: 0.86rem; color: var(--ink);
+  background: var(--ivory); border: 1px solid var(--warm-gray);
+  padding: 0.7rem 0.95rem; outline: none; width: 100%; transition: border-color 0.2s;
+  appearance: none; -webkit-appearance: none;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--gold); background: var(--white); }
+input::placeholder, textarea::placeholder { color: rgba(138,132,120,0.55); }
+textarea { resize: vertical; min-height: 90px; line-height: 1.65; }
+select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8478' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem;
+}
+.field-hint { font-size: 0.68rem; color: var(--mid-gray); line-height: 1.5; }
+.form-divider { height: 1px; background: var(--warm-gray); margin: 0.25rem 0; }
+
+/* Checkbox group */
+.checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+.check-item { display: flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; color: #555; cursor: pointer; user-select: none; }
+.check-item input[type=checkbox] {
+  width: 1rem; height: 1rem; border: 1px solid var(--warm-gray);
+  background: var(--ivory); appearance: none; -webkit-appearance: none;
+  cursor: pointer; flex-shrink: 0; position: relative; transition: all 0.15s;
+}
+.check-item input[type=checkbox]:checked { background: var(--gold); border-color: var(--gold); }
+.check-item input[type=checkbox]:checked::after {
+  content: '✓'; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); font-size: 0.6rem; color: var(--ink); font-weight: 700;
+}
+
+/* Submit */
+.form-footer { display: flex; align-items: flex-start; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+.form-disclaimer { font-size: 0.7rem; color: var(--mid-gray); line-height: 1.65; max-width: 320px; }
+.form-disclaimer a { color: var(--gold); text-decoration: none; }
+.btn-submit {
+  font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer;
+  color: var(--ink); background: var(--gold);
+  padding: 1rem 2.5rem; border: 1px solid var(--gold); transition: all 0.25s; white-space: nowrap;
+}
+.btn-submit:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+/* Success message */
+.success-banner {
+  display: none;
+  background: var(--green-bg); border: 1px solid rgba(42,92,63,0.25);
+  border-left: 3px solid var(--green);
+  padding: 1.5rem; margin-bottom: 1.5rem;
+}
+.success-banner.show { display: block; }
+.sb-title { font-size: 0.88rem; font-weight: 600; color: var(--green); margin-bottom: 0.35rem; }
+.sb-body  { font-size: 0.8rem; color: #3a5c48; line-height: 1.65; }
+
+/* ── TRUST BAR ── */
+.trust-bar {
+  background: var(--warm-gray); padding: 3rem 4rem;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-top: 1px solid rgba(184,146,42,0.15);
+}
+.trust-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 0 2rem; border-right: 1px solid rgba(184,146,42,0.15);
+}
+.trust-item:first-child { padding-left: 0; }
+.trust-item:last-child  { border-right: none; }
+.ti-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+.ti-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 600; color: var(--ink); margin-bottom: 0.2rem; }
+.ti-sub   { font-size: 0.75rem; color: var(--mid-gray); line-height: 1.55; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep); padding: 3rem 4rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(184,146,42,0.12);
+}
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); text-decoration: none; }
+.footer-logo span { color: var(--gold); }
+.footer-meta { font-size: 0.72rem; color: rgba(247,244,238,0.3); letter-spacing: 0.06em; }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; color: rgba(247,244,238,0.4); transition: color 0.2s; }
+.footer-links a:hover { color: var(--gold); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.25rem !important; }
+  .nav-links, .nav-cta { display: none !important; }
+  .nav-hamburger { display: flex !important; }
+  .page-hero { grid-template-columns: 1fr !important; padding: 7rem 1.5rem 3.5rem !important; gap: 2rem !important; }
+  .page-hero::after { display: none; }
+  .hero-right { border-left: none !important; padding-left: 0 !important; border-top: 1px solid rgba(184,146,42,0.2); padding-top: 1.5rem !important; }
+  .seek-section { grid-template-columns: 1fr !important; }
+  .seek-left, .seek-right { padding: 3rem 1.5rem !important; border-right: none !important; }
+  .form-section { grid-template-columns: 1fr !important; }
+  .form-left  { padding: 3rem 1.5rem !important; }
+  .form-right { padding: 3rem 1.5rem !important; border-left: none !important; border-top: 1px solid var(--warm-gray); }
+  .field-row { grid-template-columns: 1fr !important; }
+  .checkbox-group { grid-template-columns: 1fr !important; }
+  .form-footer { flex-direction: column !important; align-items: stretch !important; }
+  .btn-submit { width: 100%; text-align: center; }
+  .trust-bar { grid-template-columns: 1fr 1fr !important; }
+  .trust-item { padding: 1.25rem !important; border-bottom: 1px solid rgba(184,146,42,0.12); }
+  .trust-item:nth-child(odd) { border-right: 1px solid rgba(184,146,42,0.12) !important; }
+  .trust-item:nth-child(even) { border-right: none !important; }
+  footer { flex-direction: column !important; gap: 1rem !important; padding: 2rem 1.5rem !important; text-align: center; }
+  .footer-links { justify-content: center; flex-wrap: wrap; }
+}
+@media (max-width: 480px) {
+  .page-title { font-size: 2.2rem !important; }
+  .trust-bar { grid-template-columns: 1fr !important; }
+  .trust-item { border-right: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV DRAWER -->
+<div class="nav-drawer" id="nav-drawer">
+  <a href="orient-select-foods-homepage.html" onclick="closeDrawer()">Home</a>
+  <a href="orient-select-foods-products.html" onclick="closeDrawer()">Products</a>
+  <a href="orient-select-foods-about.html"    onclick="closeDrawer()">Compliance</a>
+  <a href="orient-select-foods-partner.html"  onclick="closeDrawer()">Partner With Us</a>
+  <a href="orient-select-foods-exporter.html" onclick="closeDrawer()" style="color:var(--gold)">Supplier Inquiry</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="orient-select-foods-homepage.html" class="nav-logo">
+    Orient <span>Select</span> Foods
+    <small style="display:block;font-size:0.45em;letter-spacing:0.08em;color:var(--gold);font-weight:400;opacity:0.85;margin-top:1px">东方甄选食品供应链</small>
+  </a>
+  <ul class="nav-links">
+    <li><a href="orient-select-foods-products.html">Products</a></li>
+    <li><a href="orient-select-foods-about.html">Supply Chain &amp; Compliance</a></li>
+    <li><a href="orient-select-foods-partner.html">Wholesale Inquiry</a></li>
+    <li><a href="orient-select-foods-exporter.html" class="active">Supplier Inquiry</a></li>
+  </ul>
+  <a href="#exporter-form" class="nav-cta">Submit Inquiry</a>
+  <div class="nav-hamburger" onclick="toggleDrawer()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-left">
+    <div class="eyebrow">Supplier &amp; Exporter Portal</div>
+    <h1 class="page-title">
+      Are You a Food<br>Manufacturer or
+      <em>Exporter?</em>
+    </h1>
+  </div>
+  <div class="hero-right">
+    <p>
+      Orient Select Foods is actively seeking <strong>qualified Asian food manufacturers and exporters</strong> based in Canada, Asia, and North America to expand our premium frozen food portfolio.
+    </p>
+    <p>
+      If your facility is FDA-registered, HACCP-certified, and producing authentic, retail-ready frozen Asian foods — we want to hear from you. Fill in the form below and our sourcing team will review your submission within <strong>3 business days</strong>.
+    </p>
+    <div class="hero-chips">
+      <span class="hero-chip">FDA-Registered Facilities</span>
+      <span class="hero-chip">HACCP Certified</span>
+      <span class="hero-chip">Made in Canada</span>
+      <span class="hero-chip">Export-Ready</span>
+      <span class="hero-chip">DDP Capable</span>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE SEEK / WHAT WE OFFER -->
+<section class="seek-section">
+  <div class="seek-left">
+    <div class="section-label">Sourcing Criteria</div>
+    <h2 class="section-heading">What We Look<br>for in a Supplier</h2>
+    <p class="body-text">We maintain a <strong>curated, compliance-first supplier network</strong>. Every manufacturer we work with must meet the following baseline requirements before a commercial conversation begins.</p>
+    <div class="criteria-list">
+      <div class="criteria-item">
+        <span class="ci-num">01</span>
+        <div>
+          <div class="ci-title">FDA Facility Registration</div>
+          <div class="ci-desc">Your production facility must be registered with the US FDA under 21 CFR Part 1. We verify registration numbers before any sampling.</div>
+        </div>
+      </div>
+      <div class="criteria-item">
+        <span class="ci-num">02</span>
+        <div>
+          <div class="ci-title">HACCP Certification</div>
+          <div class="ci-desc">Active HACCP plan covering your full product range. We require documentation prior to first purchase order.</div>
+        </div>
+      </div>
+      <div class="criteria-item">
+        <span class="ci-num">03</span>
+        <div>
+          <div class="ci-title">Authentic Asian Product Lines</div>
+          <div class="ci-desc">Dumplings, dim sum, savory pancakes, bao buns, or similar frozen Asian formats with genuine recipe heritage and clean ingredient lists.</div>
+        </div>
+      </div>
+      <div class="criteria-item">
+        <span class="ci-num">04</span>
+        <div>
+          <div class="ci-title">Retail-Ready Packaging</div>
+          <div class="ci-desc">Bilingual (English/French) labeling, UPC barcoded, shelf-life documented. Private label capability is a plus.</div>
+        </div>
+      </div>
+      <div class="criteria-item">
+        <span class="ci-num">05</span>
+        <div>
+          <div class="ci-title">Consistent Volume Capability</div>
+          <div class="ci-desc">Ability to fulfill recurring monthly orders. We scale with suppliers — but need confidence in production capacity from day one.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="seek-right">
+    <div class="section-label">What We Offer Suppliers</div>
+    <h2 class="section-heading">A Committed US<br>Distribution Partner</h2>
+    <p class="body-text">We don't just buy product — we build long-term supply relationships. Here's what working with Orient Select Foods means for your business.</p>
+    <div class="offer-cards">
+      <div class="offer-card">
+        <span class="oc-icon">🇺🇸</span>
+        <div class="oc-title">Dedicated US Market Entry</div>
+        <div class="oc-desc">We handle FSVP registration, customs clearance, FDA Prior Notice, and all US import compliance — removing the regulatory barrier to the US market entirely.</div>
+      </div>
+      <div class="offer-card">
+        <span class="oc-icon">📦</span>
+        <div class="oc-title">Predictable Purchase Orders</div>
+        <div class="oc-desc">Recurring, scheduled orders tied to confirmed retail buyer demand. No spot buys — we plan volume in advance so you can produce efficiently.</div>
+      </div>
+      <div class="offer-card">
+        <span class="oc-icon">🏪</span>
+        <div class="oc-title">Access to US Retail & Foodservice</div>
+        <div class="oc-desc">Your products in US supermarket chains, specialty Asian retailers, and foodservice distributors — with Orient Select Foods as the bridge.</div>
+      </div>
+      <div class="offer-card">
+        <span class="oc-icon">🏷️</span>
+        <div class="oc-title">Private Label Opportunity</div>
+        <div class="oc-desc">Qualified suppliers can produce under the Orient Select Foods brand or support retailer private label programs with consistent spec and packaging.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY FORM -->
+<section class="form-section" id="exporter-form">
+
+  <!-- Left context panel -->
+  <div class="form-left">
+    <div>
+      <div class="fl-label">Supplier Inquiry</div>
+      <h2 class="fl-heading">Submit Your<br><em>Product Profile.</em></h2>
+      <p class="fl-body">
+        Complete the form with your company details, product lines, and certifications. Our sourcing team reviews every submission and responds within <strong>3 business days</strong>.
+      </p>
+
+      <div class="fl-divider"></div>
+
+      <div class="fl-receives">
+        <span class="flr-title">— After you submit</span>
+        <div class="flr-list">
+          <div class="flr-item">
+            <span class="flr-icon">📋</span>
+            <div><strong>Sourcing Review</strong> Your profile is reviewed against our current product expansion needs and compliance requirements</div>
+          </div>
+          <div class="flr-item">
+            <span class="flr-icon">📞</span>
+            <div><strong>3-Day Response</strong> If there's a fit, our sourcing team contacts you to schedule a product review call</div>
+          </div>
+          <div class="flr-item">
+            <span class="flr-icon">🧊</span>
+            <div><strong>Sample Request</strong> Qualified suppliers are asked to ship frozen product samples to our Dallas, TX office</div>
+          </div>
+          <div class="flr-item">
+            <span class="flr-icon">🤝</span>
+            <div><strong>Supply Agreement</strong> Approved suppliers enter a formal purchase agreement with defined volume and compliance terms</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fl-divider"></div>
+    </div>
+
+    <div class="fl-contact">
+      <span class="flc-label">— Direct contact</span>
+      <div class="flc-line">📧 <a href="mailto:admin@orientselectfoods.com">admin@orientselectfoods.com</a></div>
+      <div class="flc-line">📍 Dallas, TX — US Importer of Record</div>
+      <div class="flc-line">🕐 3 business day response on all supplier submissions</div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="form-right">
+    <div class="form-header">
+      <span class="form-eyebrow">Exporter / Supplier Inquiry</span>
+      <h3 class="form-title">Submit Your Product Profile</h3>
+      <p class="form-note">Fields marked <span>*</span> are required. Sent directly to our sourcing team.</p>
+    </div>
+
+    <!-- Success banner -->
+    <div class="success-banner" id="success-banner">
+      <div class="sb-title">✓ Inquiry Submitted Successfully</div>
+      <div class="sb-body">
+        Thank you. Your supplier inquiry has been sent to <strong>admin@orientselectfoods.com</strong>.<br>
+        Our sourcing team will review your submission and respond within 3 business days.
+      </div>
+    </div>
+
+    <form class="exporter-form" id="exporter-form-el">
+
+      <!-- Company Info -->
+      <div class="field-row">
+        <div class="field">
+          <label class="lbl">Contact Name <span class="req">*</span></label>
+          <input type="text" id="ef-name" placeholder="Full name" required />
+        </div>
+        <div class="field">
+          <label class="lbl">Job Title <span class="req">*</span></label>
+          <input type="text" id="ef-title" placeholder="e.g. Export Manager, CEO" required />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="lbl">Company / Manufacturer Name <span class="req">*</span></label>
+          <input type="text" id="ef-company" placeholder="Legal company name" required />
+        </div>
+        <div class="field">
+          <label class="lbl">Country of Operation <span class="req">*</span></label>
+          <select id="ef-country" required>
+            <option value="" disabled selected>Select country…</option>
+            <option>Canada</option>
+            <option>United States</option>
+            <option>China (Mainland)</option>
+            <option>Taiwan</option>
+            <option>Hong Kong</option>
+            <option>South Korea</option>
+            <option>Japan</option>
+            <option>Vietnam</option>
+            <option>Thailand</option>
+            <option>Singapore</option>
+            <option>Malaysia</option>
+            <option>Other — specify in notes</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="lbl">Business Email <span class="req">*</span></label>
+          <input type="email" id="ef-email" placeholder="you@company.com" required />
+        </div>
+        <div class="field">
+          <label class="lbl">Phone / WhatsApp</label>
+          <input type="tel" id="ef-phone" placeholder="+1 or +86 or +82…" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="lbl">Company Website</label>
+        <input type="url" id="ef-website" placeholder="https://www.yourcompany.com" />
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- Product Info -->
+      <div class="field">
+        <label class="lbl">Product Categories You Manufacture <span class="req">*</span></label>
+        <div class="checkbox-group">
+          <label class="check-item"><input type="checkbox" value="Dumplings / Gyoza" /> Dumplings / Gyoza</label>
+          <label class="check-item"><input type="checkbox" value="Dim Sum (Har Gow, Siu Mai)" /> Dim Sum (Har Gow, Siu Mai)</label>
+          <label class="check-item"><input type="checkbox" value="Chive Pockets (韭菜盒子)" /> Chive Pockets 韭菜盒子</label>
+          <label class="check-item"><input type="checkbox" value="Scallion Pancakes (葱油饼)" /> Scallion Pancakes 葱油饼</label>
+          <label class="check-item"><input type="checkbox" value="Bao Buns / Steamed Buns" /> Bao / Steamed Buns</label>
+          <label class="check-item"><input type="checkbox" value="Spring Rolls / Egg Rolls" /> Spring / Egg Rolls</label>
+          <label class="check-item"><input type="checkbox" value="Wontons / Soup Dumplings" /> Wontons / Soup Dumplings</label>
+          <label class="check-item"><input type="checkbox" value="Other Asian Frozen Foods" /> Other — describe below</label>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="lbl">Monthly Production Capacity</label>
+          <select id="ef-capacity">
+            <option value="" disabled selected>Select range…</option>
+            <option>Under 5,000 kg/month</option>
+            <option>5,000 – 20,000 kg/month</option>
+            <option>20,000 – 50,000 kg/month</option>
+            <option>50,000 – 100,000 kg/month</option>
+            <option>100,000+ kg/month</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lbl">Years in Operation</label>
+          <select id="ef-years">
+            <option value="" disabled selected>Select…</option>
+            <option>Less than 2 years</option>
+            <option>2 – 5 years</option>
+            <option>5 – 10 years</option>
+            <option>10 – 20 years</option>
+            <option>20+ years</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- Certifications -->
+      <div class="field">
+        <label class="lbl">Certifications Held <span class="req">*</span></label>
+        <div class="checkbox-group">
+          <label class="check-item"><input type="checkbox" value="FDA Registered" /> FDA Registered</label>
+          <label class="check-item"><input type="checkbox" value="HACCP Certified" /> HACCP Certified</label>
+          <label class="check-item"><input type="checkbox" value="ISO 22000" /> ISO 22000</label>
+          <label class="check-item"><input type="checkbox" value="BRCGS / SQF" /> BRCGS / SQF</label>
+          <label class="check-item"><input type="checkbox" value="Halal Certified" /> Halal Certified</label>
+          <label class="check-item"><input type="checkbox" value="Kosher Certified" /> Kosher Certified</label>
+          <label class="check-item"><input type="checkbox" value="Organic Certified" /> Organic Certified</label>
+          <label class="check-item"><input type="checkbox" value="None yet — in progress" /> None yet — in progress</label>
+        </div>
+        <span class="field-hint">Select all that apply. FDA registration and HACCP are required to proceed.</span>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="lbl">FDA Registration Number</label>
+          <input type="text" id="ef-fda" placeholder="e.g. 1234567" />
+          <span class="field-hint">Required if FDA-registered</span>
+        </div>
+        <div class="field">
+          <label class="lbl">Can you supply Bilingual Labels?<br>(English / French)</label>
+          <select id="ef-bilingual">
+            <option value="" disabled selected>Select…</option>
+            <option>Yes — already bilingual</option>
+            <option>Yes — can adapt packaging</option>
+            <option>No — label redesign needed</option>
+            <option>Private label only (no existing label)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="lbl">Do you offer Private Label Manufacturing?</label>
+        <select id="ef-privatelabel">
+          <option value="" disabled selected>Select…</option>
+          <option>Yes — full private label capability</option>
+          <option>Yes — with minimum order requirements</option>
+          <option>No — branded product only</option>
+          <option>Open to discussion</option>
+        </select>
+      </div>
+
+      <div class="form-divider"></div>
+
+      <!-- Product Description + Notes -->
+      <div class="field">
+        <label class="lbl">Describe Your Key Products <span class="req">*</span></label>
+        <textarea id="ef-products" rows="3" placeholder="List your main SKUs — product names, fillings, weight formats, pack sizes, shelf life. The more detail, the faster we can assess fit." required></textarea>
+      </div>
+
+      <div class="field">
+        <label class="lbl">Current Export Markets (if any)</label>
+        <input type="text" id="ef-markets" placeholder="e.g. Canada, US, UK, Australia — or 'domestic only'" />
+      </div>
+
+      <div class="field">
+        <label class="lbl">Additional Notes</label>
+        <textarea id="ef-notes" rows="2" placeholder="Pricing expectations, MOQ requirements, lead times, sample availability, or anything else relevant…"></textarea>
+      </div>
+
+      <div class="field">
+        <label class="lbl">How Did You Hear About Us?</label>
+        <select id="ef-source">
+          <option value="" disabled selected>Select…</option>
+          <option>Trade show / Industry event</option>
+          <option>Online search</option>
+          <option>Referral from another supplier</option>
+          <option>LinkedIn / Social media</option>
+          <option>Direct outreach from our team</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div class="form-footer">
+        <p class="form-disclaimer">
+          By submitting this form you consent to Orient Select Foods contacting you regarding your supplier inquiry. Your information is not shared with third parties.
+          View our <a href="#">Privacy Policy</a>.
+        </p>
+        <button type="button" class="btn-submit" onclick="submitExporterForm()">
+          Submit Supplier Inquiry →
+        </button>
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">
+    <span class="ti-icon">⚡</span>
+    <div>
+      <div class="ti-title">3-Day Review</div>
+      <div class="ti-sub">Every supplier submission reviewed by our sourcing team within 3 business days.</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="ti-icon">🛡️</span>
+    <div>
+      <div class="ti-title">Compliance First</div>
+      <div class="ti-sub">FDA registration and HACCP certification are non-negotiable baseline requirements.</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="ti-icon">🤝</span>
+    <div>
+      <div class="ti-title">Long-Term Partnerships</div>
+      <div class="ti-sub">We build multi-year supply relationships — not one-off spot purchases.</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <span class="ti-icon">🇺🇸</span>
+    <div>
+      <div class="ti-title">Your US Entry Point</div>
+      <div class="ti-sub">We handle all US import compliance. You focus on production.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="orient-select-foods-homepage.html" class="footer-logo">Orient <span>Select</span> Foods</a>
+  <span class="footer-meta">Dallas, TX &nbsp;|&nbsp; FDA Registered FSVP Importer &nbsp;|&nbsp; © 2025 东方甄选食品供应链 / Orient Select Foods LLC</span>
+  <div class="footer-links">
+    <a href="orient-select-foods-products.html">Products</a>
+    <a href="orient-select-foods-about.html">Compliance</a>
+    <a href="orient-select-foods-partner.html">Wholesale</a>
+    <a href="orient-select-foods-exporter.html">Suppliers</a>
+    <a href="orient-select-foods-admin.html">Admin</a>
+  </div>
+</footer>
+
+<script>
+function toggleDrawer() {
+  document.querySelector('nav').classList.toggle('nav-open');
+  document.getElementById('nav-drawer').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('nav-drawer').classList.contains('open') ? 'hidden' : '';
+}
+function closeDrawer() {
+  document.querySelector('nav').classList.remove('nav-open');
+  document.getElementById('nav-drawer').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function submitExporterForm() {
+  // Validate required fields
+  const name    = document.getElementById('ef-name').value.trim();
+  const title   = document.getElementById('ef-title').value.trim();
+  const company = document.getElementById('ef-company').value.trim();
+  const country = document.getElementById('ef-country').value;
+  const email   = document.getElementById('ef-email').value.trim();
+  const products= document.getElementById('ef-products').value.trim();
+
+  if (!name || !title || !company || !country || !email || !products) {
+    alert('Please fill in all required fields before submitting.');
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  // Collect product categories
+  const categories = [...document.querySelectorAll('.exporter-form input[type=checkbox]:checked')]
+    .map(cb => cb.value).join(', ') || 'Not specified';
+
+  // Collect certifications
+  const certs = [...document.querySelectorAll('.exporter-form input[type=checkbox]:checked')]
+    .filter(cb => ['FDA Registered','HACCP Certified','ISO 22000','BRCGS / SQF','Halal Certified','Kosher Certified','Organic Certified','None yet — in progress'].includes(cb.value))
+    .map(cb => cb.value).join(', ') || 'Not specified';
+
+  const phone      = document.getElementById('ef-phone').value.trim();
+  const website    = document.getElementById('ef-website').value.trim();
+  const capacity   = document.getElementById('ef-capacity').value || 'Not specified';
+  const years      = document.getElementById('ef-years').value || 'Not specified';
+  const fda        = document.getElementById('ef-fda').value.trim();
+  const bilingual  = document.getElementById('ef-bilingual').value || 'Not specified';
+  const pl         = document.getElementById('ef-privatelabel').value || 'Not specified';
+  const markets    = document.getElementById('ef-markets').value.trim();
+  const notes      = document.getElementById('ef-notes').value.trim();
+  const source     = document.getElementById('ef-source').value || 'Not specified';
+
+  // Build email body
+  const subject = encodeURIComponent(`[Supplier Inquiry] ${company} — ${country}`);
+
+  const body = encodeURIComponent(
+`SUPPLIER / EXPORTER INQUIRY
+Orient Select Foods — admin@orientselectfoods.com
+Submitted: ${new Date().toLocaleString('en-US')}
+${'─'.repeat(52)}
+
+CONTACT INFORMATION
+Name:        ${name}
+Title:       ${title}
+Company:     ${company}
+Country:     ${country}
+Email:       ${email}
+Phone:       ${phone || 'Not provided'}
+Website:     ${website || 'Not provided'}
+
+${'─'.repeat(52)}
+PRODUCT LINES
+Categories:  ${categories}
+Description:
+${products}
+
+Monthly Capacity:  ${capacity}
+Years in Operation: ${years}
+Export Markets:    ${markets || 'Not specified'}
+
+${'─'.repeat(52)}
+CERTIFICATIONS & COMPLIANCE
+Certifications:      ${certs}
+FDA Reg. Number:     ${fda || 'Not provided'}
+Bilingual Labels:    ${bilingual}
+Private Label:       ${pl}
+
+${'─'.repeat(52)}
+ADDITIONAL NOTES
+${notes || 'None'}
+
+${'─'.repeat(52)}
+SOURCE: ${source}
+`);
+
+  // Open mailto — works in all browsers, no server required
+  window.location.href = `mailto:admin@orientselectfoods.com?subject=${subject}&body=${body}`;
+
+  // Show success banner after short delay
+  setTimeout(() => {
+    document.getElementById('success-banner').classList.add('show');
+    document.getElementById('exporter-form-el').style.opacity = '0.4';
+    document.getElementById('exporter-form-el').style.pointerEvents = 'none';
+    window.scrollTo({ top: document.getElementById('exporter-form').offsetTop - 80, behavior: 'smooth' });
+  }, 800);
+}
+</script>
+</body>
+</html>

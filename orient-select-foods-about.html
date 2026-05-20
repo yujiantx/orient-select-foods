@@ -806,6 +806,7 @@
     <li><a href="orient-select-foods-products.html" data-i18n="nav.products">Products</a></li>
     <li><a href="orient-select-foods-about.html" class="active" data-i18n="nav.compliance">Supply Chain &amp; Compliance</a></li>
     <li><a href="orient-select-foods-partner.html" data-i18n="nav.partner">Partner With Us</a></li>
+      <li><a href="orient-select-foods-exporter.html">Supplier Inquiry</a></li>
   </ul>
   <a href="orient-select-foods-partner.html#inquiry" class="nav-cta">Request a Quote</a>
 </nav>
@@ -1058,6 +1059,12 @@
   <img src="images/img_06.jpg"   style="width:100%;aspect-ratio:1;object-fit:cover;display:block" alt="Chive Pocket Bulk"/>
 </div>
 
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--warm-gray);border-bottom:1px solid var(--warm-gray);overflow:hidden">
+  <img src="images/img_02.jpg" style="width:100%;aspect-ratio:1;object-fit:cover;display:block" alt="Chive Pocket"/>
+  <img src="images/img_03.jpg"    style="width:100%;aspect-ratio:1;object-fit:cover;display:block" alt="Scallion Pancake"/>
+  <img src="images/img_04.jpg"       style="width:100%;aspect-ratio:1;object-fit:cover;display:block" alt="Vegetable Bun"/>
+  <img src="images/img_06.jpg"    style="width:100%;aspect-ratio:1;object-fit:cover;display:block" alt="Chive Pocket Bulk"/>
+</div>
 <section class="about-cta" id="contact">
   <div class="cta-inner">
     <div class="cta-label">Work With Us</div>
@@ -1080,6 +1087,7 @@
     <a href="orient-select-foods-products.html">Products</a>
     <a href="orient-select-foods-about.html">Compliance</a>
     <a href="orient-select-foods-partner.html#inquiry">Contact</a>
+    <a href="orient-select-foods-exporter.html">Suppliers</a>
     <a href="orient-select-foods-admin.html">Admin</a>
   </div>
 </footer>
@@ -1216,7 +1224,7 @@ const T = {
   'strip.cold.sub':  { en:'Frozen-fresh from origin to final mile', zh:'从原产地到终端全程冷冻保鲜', ko:'원산지에서 최종 배송지까지 냉동 신선 유지', ja:'産地から最終納品先まで冷凍鮮度を維持' },
 
   // ── WHY CHOOSE US ──
-  'why.eyebrow':     { en:'Why Orient Select Foods', zh:'为什么选择东方精选食品', ko:'오리엔트 셀렉트 푸즈를 선택하는 이유', ja:'なぜ東方精選フーズなのか' },
+  'why.eyebrow':     { en:'Why Orient Select Foods', zh:'为什么选择东方甄选食品供应链', ko:'오리엔트 셀렉트 푸즈를 선택하는 이유', ja:'なぜ東方精選フーズなのか' },
   'why.h2':          { en:'Built for the B2B Buyer Who Demands More', zh:'专为高要求B2B买家而生', ko:'더 높은 기준을 요구하는 B2B 구매자를 위해 설계', ja:'高水準を求めるB2Bバイヤーのために' },
   'why.desc':        { en:'We exist at the intersection of authentic Asian food culture and rigorous US distribution standards.', zh:'我们立于正宗亚洲饮食文化与严格美国配送标准的交汇点。', ko:'우리는 정통 아시아 식문화와 엄격한 미국 유통 기준의 교차점에 있습니다.', ja:'本格的なアジア食文化と厳格な米国流通基準の交点に位置します。' },
   'why.p1.title':    { en:'Authentic Taste. Clean Ingredients.', zh:'正宗口味，纯净配料。', ko:'정통 맛. 깨끗한 원료.', ja:'本格の味。クリーンな原材料。' },
@@ -1249,7 +1257,7 @@ const T = {
   // ── CTA ──
   'cta.eyebrow':     { en:'Partner With Us', zh:'洽谈合作', ko:'파트너 문의', ja:'パートナー申込' },
   'cta.title':       { en:'Ready to Stock the Asian Frozen Foods Your Customers Want?', zh:'准备好为您的顾客备货他们想要的亚洲冷冻食品了吗？', ko:'고객이 원하는 아시아 냉동식품을 입점할 준비가 되셨나요?', ja:'お客様が求めるアジア冷凍食品を仕入れる準備はできていますか？' },
-  'cta.sub':         { en:'Join US supermarkets and distributors who trust Orient Select Foods for reliable supply, full compliance, and products that move.', zh:'加入信任东方精选食品的美国超市和分销商行列，享受可靠供货、全面合规与畅销产品。', ko:'신뢰할 수 있는 공급, 완전한 규정 준수, 잘 팔리는 제품을 위해 오리엔트 셀렉트 푸즈를 선택한 미국 슈퍼마켓과 유통업체에 합류하세요.', ja:'信頼できる供給・完全なコンプライアンス・売れる製品のために東方精選フーズを選んだ米国スーパーマーケット・流通業者に参加しましょう。' },
+  'cta.sub':         { en:'Join US supermarkets and distributors who trust Orient Select Foods for reliable supply, full compliance, and products that move.', zh:'加入信任东方甄选食品供应链的美国超市和分销商行列，享受可靠供货、全面合规与畅销产品。', ko:'신뢰할 수 있는 공급, 완전한 규정 준수, 잘 팔리는 제품을 위해 오리엔트 셀렉트 푸즈를 선택한 미국 슈퍼마켓과 유통업체에 합류하세요.', ja:'信頼できる供給・完全なコンプライアンス・売れる製品のために東方精選フーズを選んだ米国スーパーマーケット・流通業者に参加しましょう。' },
   'cta.btn1':        { en:'Request a Product Catalog', zh:'申请产品目录', ko:'제품 카탈로그 요청', ja:'製品カタログを申請' },
   'cta.btn2':        { en:'Schedule a Buyer Call',    zh:'预约采购通话',  ko:'바이어 콜 예약',   ja:'バイヤーコールを予約' },
 
@@ -1257,7 +1265,7 @@ const T = {
   'about.eyebrow':   { en:'Our Story & Standards', zh:'我们的故事与标准', ko:'우리의 이야기와 기준', ja:'私たちのストーリーと基準' },
   'about.h1a':       { en:'Where Authentic Asian Craft Meets', zh:'正宗亚洲工艺与', ko:'정통 아시아 장인 정신이 만나는 곳,', ja:'本格アジアの製法と' },
   'about.h1b':       { en:'US-Grade Rigor.', zh:'美国级严格标准的交汇处。', ko:'미국급 엄격함의 만남.', ja:'米国基準の厳格さの出会い。' },
-  'about.intro':     { en:'Orient Select Foods was built on a single conviction: that premium Asian frozen foods and flawless US regulatory compliance are not a trade-off.', zh:'东方精选食品基于一个坚定信念：优质亚洲冷冻食品与完美的美国法规合规并不是取舍问题。', ko:'오리엔트 셀렉트 푸즈는 한 가지 신념으로 설립되었습니다: 프리미엄 아시아 냉동식품과 완벽한 미국 규정 준수는 트레이드오프가 아닙니다.', ja:'東方精選フーズは一つの信念のもとに設立されました：高品質なアジア冷凍食品と米国規制への完全準拠はトレードオフではないということ。' },
+  'about.intro':     { en:'Orient Select Foods was built on a single conviction: that premium Asian frozen foods and flawless US regulatory compliance are not a trade-off.', zh:'东方甄选食品供应链基于一个坚定信念：优质亚洲冷冻食品与完美的美国法规合规并不是取舍问题。', ko:'오리엔트 셀렉트 푸즈는 한 가지 신념으로 설립되었습니다: 프리미엄 아시아 냉동식품과 완벽한 미국 규정 준수는 트레이드오프가 아닙니다.', ja:'東方精選フーズは一つの信念のもとに設立されました：高品質なアジア冷凍食品と米国規制への完全準拠はトレードオフではないということ。' },
   'about.who.eyebrow':  { en:'Who We Are', zh:'关于我们', ko:'우리는 누구인가', ja:'私たちについて' },
   'about.who.h2':       { en:'The Bridge Between Two Food Worlds', zh:'连接两个饮食世界的桥梁', ko:'두 식품 세계를 잇는 다리', ja:'二つの食の世界をつなぐ橋' },
   'about.comply.eyebrow':{ en:'Quality & Compliance', zh:'质量与合规', ko:'품질 및 규정 준수', ja:'品質とコンプライアンス' },
@@ -1300,7 +1308,7 @@ const T = {
   'partner.eyebrow': { en:'Wholesale & Distribution', zh:'批发与分销', ko:'도매 및 유통', ja:'卸売・流通' },
   'partner.h1a':     { en:'Wholesale Inquiry &', zh:'批发询价与', ko:'도매 문의 및', ja:'卸売お問い合わせ＆' },
   'partner.h1b':     { en:'Pricing Request',    zh:'定价申请',  ko:'가격 요청',   ja:'価格お見積もり' },
-  'partner.sub1':    { en:'Orient Select Foods supplies US supermarket chains, regional grocers, and wholesale distributors with premium frozen Asian snacks.', zh:'东方精选食品为美国连锁超市、区域零售商和批发分销商供应优质亚洲冷冻零食。', ko:'오리엔트 셀렉트 푸즈는 미국 슈퍼마켓 체인, 지역 식료품점, 도매 유통업체에 프리미엄 냉동 아시아 스낵을 공급합니다.', ja:'東方精選フーズは米国のスーパーマーケットチェーン、地域食料品店、卸売業者にプレミアム冷凍アジアスナックを供給しています。' },
+  'partner.sub1':    { en:'Orient Select Foods supplies US supermarket chains, regional grocers, and wholesale distributors with premium frozen Asian snacks.', zh:'东方甄选食品供应链为美国连锁超市、区域零售商和批发分销商供应优质亚洲冷冻零食。', ko:'오리엔트 셀렉트 푸즈는 미국 슈퍼마켓 체인, 지역 식료품점, 도매 유통업체에 프리미엄 냉동 아시아 스낵을 공급합니다.', ja:'東方精選フーズは米国のスーパーマーケットチェーン、地域食料品店、卸売業者にプレミアム冷凍アジアスナックを供給しています。' },
   'partner.sub2':    { en:'Submit the form below. We respond within one business day with wholesale pricing, a product catalog, and compliance documentation.', zh:'请填写以下表格。我们将在一个工作日内回复批发报价、产品目录及合规文件。', ko:'아래 양식을 제출하세요. 영업일 1일 이내에 도매 가격, 제품 카탈로그, 규정 준수 문서로 답변드립니다.', ja:'以下のフォームをご送信ください。1営業日以内に卸価格・製品カタログ・コンプライアンス書類をご案内いたします。' },
   'partner.form.title': { en:'Catalog & Pricing Request', zh:'目录与报价申请', ko:'카탈로그 및 가격 요청', ja:'カタログ・価格お見積もり' },
   'partner.form.fname': { en:'First Name', zh:'名',    ko:'이름',  ja:'名' },
@@ -1313,7 +1321,7 @@ const T = {
   'partner.ddp.h2':     { en:'What DDP Means for Your Procurement Team', zh:'DDP条款对您采购团队意味着什么', ko:'DDP가 귀사 구매팀에게 의미하는 것', ja:'DDP条件が調達チームにとって意味すること' },
 
   // ── FOOTER ──
-  'footer.meta':     { en:'Dallas, TX | FDA Registered FSVP Importer | © 2025 Orient Select Foods LLC', zh:'达拉斯，德克萨斯州 | FDA注册FSVP进口商 | © 2025 东方精选食品有限公司', ko:'달라스, TX | FDA 등록 FSVP 수입업체 | © 2025 Orient Select Foods LLC', ja:'ダラス, TX | FDA登録FSVPインポーター | © 2025 Orient Select Foods LLC' },
+  'footer.meta':     { en:'Dallas, TX | FDA Registered FSVP Importer | © 2025 Orient Select Foods LLC', zh:'达拉斯，德克萨斯州 | FDA注册FSVP进口商 | © 2025 东方甄选食品供应链', ko:'달라스, TX | FDA 등록 FSVP 수입업체 | © 2025 Orient Select Foods LLC', ja:'ダラス, TX | FDA登録FSVPインポーター | © 2025 Orient Select Foods LLC' },
 };
 
 // ── Switcher render & apply ──────────────────────────
